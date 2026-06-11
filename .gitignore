@@ -1,0 +1,6 @@
+# Artefactos de verificación / screenshots
+*.png
+.playwright-mcp/
+
+# Versión anterior de la página
+GC Automatización.html
