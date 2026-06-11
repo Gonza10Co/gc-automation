@@ -1,6 +1,6 @@
-# GC Automatización / GC Automation
+# GC Automation
 
-Landing page de **GC Automatización** — automatización con IA y software a la medida para PYMEs y fábricas en Colombia.
+Landing page de **GC Automation** — automatización con IA y software a la medida para PYMEs y fábricas en Colombia.
 
 🌐 **Live:** https://gonza10co.github.io/gc-automation/
 
@@ -25,4 +25,4 @@ python -m http.server 8000
 
 ---
 
-© 2026 GC Automatización · Gonzalo Correa
+© 2026 GC Automation · Gonzalo Correa
