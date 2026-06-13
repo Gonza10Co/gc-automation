@@ -368,6 +368,19 @@
   .cta-final p { font-size: clamp(18px, 2.2vw, 22px); color: var(--ink-2); margin-bottom: 32px; letter-spacing: -0.014em; }
   .cta-note { margin-top: 18px; font-size: 14px; color: var(--ink-3); }
 
+  /* ── Marcas que confían ──────────────────────────── */
+  .brands { background: var(--bg); padding: 72px 0 88px; }
+  .brands .kicker { font-size: 15px; font-weight: 600; color: var(--blue-ink); text-align: center; margin-bottom: 10px; }
+  .brands h2 { font-size: clamp(24px, 3.2vw, 34px); letter-spacing: -0.03em; text-align: center; margin-bottom: 40px; }
+  .brand-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
+  .brand-card {
+    width: 178px; height: 104px; background: #fff; border-radius: var(--radius-sm);
+    border: 1px solid var(--line); display: grid; place-items: center; padding: 18px 22px;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .brand-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow); }
+  .brand-card img { max-width: 100%; max-height: 56px; width: auto; height: auto; object-fit: contain; display: block; }
+
   /* ── Footer ──────────────────────────────────────── */
   footer { background: var(--bg-2); border-top: 1px solid var(--line-soft); padding: 48px 0 56px; }
   .foot-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
@@ -754,6 +767,22 @@
   </div>
 </section>
 
+<!-- ── Marcas que confían ────────────────────────────── -->
+<section class="brands">
+  <div class="wrap reveal">
+    <div class="kicker" data-i18n="brands.kicker">Confían en mí</div>
+    <h2 data-i18n="brands.title">Marcas que ya automatizan con GC</h2>
+    <div class="brand-grid">
+      <div class="brand-card"><img src="Logos/Botas-agroindustrial-logo.png" alt="Botas Agroindustrial" loading="lazy"></div>
+      <div class="brand-card"><img src="Logos/arroz-aragon-logo.png" alt="Arroz Aragón" loading="lazy"></div>
+      <div class="brand-card"><img src="Logos/Arroz-paisa-logo.jpg" alt="Arroz Paisa" loading="lazy"></div>
+      <div class="brand-card"><img src="Logos/Olpar-logo.jpg" alt="Olpar Distribuciones" loading="lazy"></div>
+      <div class="brand-card"><img src="Logos/Veraz-Logo.jpg" alt="Veraz" loading="lazy"></div>
+      <div class="brand-card"><img src="Logos/gummybox-logo.png" alt="The Gummy Box Wellness" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
 <!-- ── Footer ────────────────────────────────────────── -->
 <footer>
   <div class="wrap">
@@ -852,6 +881,8 @@
       'cta.p': 'Cuéntame qué proceso te roba horas hoy. Te respondo el mismo día con un camino claro para automatizarlo.',
       'cta.btn': 'Escríbeme por WhatsApp',
       'cta.note': 'Respuesta el mismo día · Primera asesoría sin costo',
+      'brands.kicker': 'Confían en mí',
+      'brands.title': 'Marcas que ya automatizan con GC',
       'foot.tag': 'Automatización con IA para tu negocio',
       'foot.rights': '© 2026 GC Automation. Todos los derechos reservados.'
     },
@@ -917,6 +948,8 @@
       'cta.p': "Tell me which process steals your hours today. I'll reply the same day with a clear path to automate it.",
       'cta.btn': 'Message me on WhatsApp',
       'cta.note': 'Same-day reply · First consultation free',
+      'brands.kicker': 'Trusted by',
+      'brands.title': 'Brands already automating with GC',
       'foot.tag': 'AI automation for your business',
       'foot.rights': '© 2026 GC Automation. All rights reserved.'
     }

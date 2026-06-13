@@ -2,5 +2,9 @@
 *.png
 .playwright-mcp/
 
+# Excepción: logos de marcas (sí versionar)
+!Logos/
+!Logos/*.png
+
 # Versión anterior de la página
 GC Automatización.html
