@@ -301,6 +301,28 @@
   }
   [data-theme="dark"] .card-res { color: var(--green); }
 
+  /* ── Proyectos ───────────────────────────────────── */
+  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .proj {
+    background: var(--bg-2); border-radius: var(--radius-md); padding: 30px 28px 28px;
+    display: flex; flex-direction: column; transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .proj:hover { transform: translateY(-4px); box-shadow: var(--card-shadow); }
+  .proj-type { font-size: 13px; font-weight: 600; color: var(--blue-ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .proj h3 { font-size: 21px; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .proj p { font-size: 15.5px; line-height: 1.5; color: var(--ink-2); letter-spacing: -0.01em; flex: 1; }
+  .proj-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .proj-chip {
+    font-size: 12.5px; font-weight: 500; padding: 4px 10px; border-radius: 999px;
+    background: var(--bg-elev); color: var(--ink); border: 1px solid var(--line-soft);
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .proj-chip.live { color: var(--green-ink); }
+  [data-theme="dark"] .proj-chip.live { color: var(--green); }
+  .proj-stack { margin-top: 14px; font-size: 13px; color: var(--ink-3); }
+  .proj-link { margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--blue-ink); text-decoration: none; }
+  .proj-link:hover { text-decoration: underline; }
+
   /* ── ERP band (dark in both themes) ──────────────── */
   .band-dark { background: #000; color: #f5f5f7; }
   [data-theme="dark"] .band-dark { border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
@@ -368,19 +390,6 @@
   .cta-final p { font-size: clamp(18px, 2.2vw, 22px); color: var(--ink-2); margin-bottom: 32px; letter-spacing: -0.014em; }
   .cta-note { margin-top: 18px; font-size: 14px; color: var(--ink-3); }
 
-  /* ── Marcas que confían ──────────────────────────── */
-  .brands { background: var(--bg); padding: 72px 0 88px; }
-  .brands .kicker { font-size: 15px; font-weight: 600; color: var(--blue-ink); text-align: center; margin-bottom: 10px; }
-  .brands h2 { font-size: clamp(24px, 3.2vw, 34px); letter-spacing: -0.03em; text-align: center; margin-bottom: 40px; }
-  .brand-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
-  .brand-card {
-    width: 178px; height: 104px; background: #fff; border-radius: var(--radius-sm);
-    border: 1px solid var(--line); display: grid; place-items: center; padding: 18px 22px;
-    transition: transform .25s ease, box-shadow .25s ease;
-  }
-  .brand-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow); }
-  .brand-card img { max-width: 100%; max-height: 56px; width: auto; height: auto; object-fit: contain; display: block; }
-
   /* ── Footer ──────────────────────────────────────── */
   footer { background: var(--bg-2); border-top: 1px solid var(--line-soft); padding: 48px 0 56px; }
   .foot-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
@@ -417,6 +426,7 @@
     .nav-burger { display: inline-flex; }
     .why-inner, .band-dark .inner { grid-template-columns: 1fr; gap: 36px; }
     .sol-grid, .steps { grid-template-columns: 1fr; }
+    .proj-grid { grid-template-columns: 1fr 1fr; }
     .show-grid { grid-template-columns: 1fr; }
     .panel-dash { border-right: 0; border-bottom: 1px solid var(--line-soft); }
     .panel-chat { display: none; }
@@ -430,6 +440,7 @@
     .wa-float { padding: 14px; }
     .foot-links { align-items: flex-start; }
     .sec-head { margin-bottom: 40px; }
+    .proj-grid { grid-template-columns: 1fr; }
     .tiles { grid-template-columns: 1fr 1fr; }
     .tile:last-child { display: none; }
     .p-num { font-size: 24px; }
@@ -460,6 +471,7 @@
     </a>
     <div class="nav-links">
       <a href="#soluciones" data-i18n="nav.sol">Soluciones</a>
+      <a href="#proyectos" data-i18n="nav.proj">Proyectos</a>
       <a href="#experiencia" data-i18n="nav.exp">Experiencia</a>
       <a href="#proceso" data-i18n="nav.proc">Proceso</a>
       <a href="#faq">FAQ</a>
@@ -485,6 +497,7 @@
 </nav>
 <div class="mmenu" id="mmenu">
   <a href="#soluciones" data-i18n="nav.sol">Soluciones</a>
+  <a href="#proyectos" data-i18n="nav.proj">Proyectos</a>
   <a href="#experiencia" data-i18n="nav.exp">Experiencia</a>
   <a href="#proceso" data-i18n="nav.proc">Proceso</a>
   <a href="#faq">FAQ</a>
@@ -669,6 +682,195 @@
   </div>
 </section>
 
+<!-- ── Proyectos ─────────────────────────────────────── -->
+<section id="proyectos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker" data-i18n="proj.kicker">Proyectos</div>
+      <h2 data-i18n="proj.h2">Lo que ya está funcionando.</h2>
+      <p data-i18n="proj.p">Sistemas que he construido para empresas colombianas, y algunos que ya vienen en camino.</p>
+    </div>
+    <div class="proj-grid">
+      <article class="proj reveal">
+        <div class="proj-type" data-i18n="p1.t">ERP + MES</div>
+        <h3>Botas Agroindustriales</h3>
+        <p data-i18n="p1.p">Toda la fábrica de botas en un solo sistema: pedido, corte, producción por célula, calidad, inventario, despacho, facturación y cartera.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p1.c1">Piloto en planta</span></span>
+          <span class="proj-chip"><span data-i18n="p1.c2">4 líneas de producción</span></span>
+          <span class="proj-chip"><span data-i18n="p1.c3">~600 pruebas automáticas</span></span>
+        </div>
+        <div class="proj-stack">Angular · NestJS · PostgreSQL</div>
+      </article>
+      <article class="proj reveal" style="--d:0.1s">
+        <div class="proj-type" data-i18n="p2.t">Inteligencia comercial</div>
+        <h3>OlPar Distribuciones</h3>
+        <p data-i18n="p2.p">Un Excel manual de 192 MB convertido en un proceso diario y automático: rentabilidad, fletes y ventas contra presupuesto por asesor.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p2.c1">En producción</span></span>
+          <span class="proj-chip"><span data-i18n="p2.c2">65.573 registros sin errores</span></span>
+        </div>
+        <div class="proj-stack">Python · pandas</div>
+      </article>
+      <article class="proj reveal" style="--d:0.2s">
+        <div class="proj-type" data-i18n="p3.t">Integración contable</div>
+        <h3>Grasas y Derivados de Colombia</h3>
+        <p data-i18n="p3.p">Las facturas de proveedores llegan por correo y se causan solas en la contabilidad (AgroWin). Nadie vuelve a digitarlas.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p3.c1">En producción</span></span>
+          <span class="proj-chip"><span data-i18n="p3.c2">~430 facturas al mes</span></span>
+        </div>
+        <div class="proj-stack">Python · AgroWin</div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-type" data-i18n="p4.t">Integración e-commerce</div>
+        <h3>The Gummy Box Wellness</h3>
+        <p data-i18n="p4.p">Ventas de Shopify y Farmatodo, más las facturas electrónicas de la DIAN, convertidas en archivos listos para importar al software contable.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p4.c1">En producción</span></span>
+          <span class="proj-chip"><span data-i18n="p4.c2">540 a 600 documentos al mes</span></span>
+        </div>
+        <div class="proj-stack">FastAPI · Supabase</div>
+      </article>
+      <article class="proj reveal" style="--d:0.1s">
+        <div class="proj-type" data-i18n="p5.t">IA para facturas</div>
+        <h3>Molino Aragón</h3>
+        <p data-i18n="p5.p">Facturas en XML, PDF o foto pasan solas a filas contables para Siigo. La IA lee hasta los PDF escaneados.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p5.c1">Funcionando</span></span>
+          <span class="proj-chip"><span data-i18n="p5.c2">Lista para Siigo</span></span>
+        </div>
+        <div class="proj-stack">n8n · OpenAI · Google Sheets</div>
+      </article>
+      <article class="proj reveal" style="--d:0.2s">
+        <div class="proj-type" data-i18n="p6.t">Plataforma + agente de IA</div>
+        <h3>NorPass · Mentoría Internacional</h3>
+        <p data-i18n="p6.p">Postulación de empresas a un programa público de Bogotá. Un agente de IA revisa los documentos y decide si la empresa queda habilitada.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p6.c1">En producción</span></span>
+          <span class="proj-chip"><span data-i18n="p6.c2">~200 postulaciones</span></span>
+          <span class="proj-chip"><span data-i18n="p6.c3">Cruce con 768 empresas</span></span>
+        </div>
+        <div class="proj-stack">Next.js · Supabase · Claude</div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-type" data-i18n="p7.t">Sitio web + campaña</div>
+        <h3>Diáspora Colombiana</h3>
+        <p data-i18n="p7.p">Sitio institucional para la comunidad colombiana en el exterior, con campaña de firmas, contador en vivo y comprobante por correo.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p7.c1">En producción</span></span>
+          <span class="proj-chip"><span data-i18n="p7.c2">Bilingüe</span></span>
+        </div>
+        <div class="proj-stack">Next.js · Supabase · Vercel</div>
+        <a class="proj-link" href="https://diasporacolombiana.org" target="_blank" rel="noopener noreferrer">diasporacolombiana.org <span class="chev">›</span></a>
+      </article>
+      <article class="proj reveal" style="--d:0.1s">
+        <div class="proj-type" data-i18n="p8.t">App de campo</div>
+        <h3>SOLIWEL</h3>
+        <p data-i18n="p8.p">App que funciona sin internet para capturar ensayos técnicos en campo, emitir informes en PDF firmados y alimentar un tablero gerencial.</p>
+        <div class="proj-chips">
+          <span class="proj-chip"><span data-i18n="p8.c1">En desarrollo</span></span>
+          <span class="proj-chip"><span data-i18n="p8.c2">Funciona sin conexión</span></span>
+        </div>
+        <div class="proj-stack">Angular · Supabase · PWA</div>
+      </article>
+      <article class="proj reveal" style="--d:0.2s">
+        <div class="proj-type" data-i18n="p9.t">Bot de ventas con IA</div>
+        <h3>Gestivalor</h3>
+        <p data-i18n="p9.p">Asesor virtual por WhatsApp que atiende a los interesados en intercambios estudiantiles de 5 a 10 p. m., cuando no hay asesores disponibles.</p>
+        <div class="proj-chips">
+          <span class="proj-chip"><span data-i18n="p9.c1">Prototipo probado</span></span>
+          <span class="proj-chip"><span data-i18n="p9.c2">Responde 24/7</span></span>
+        </div>
+        <div class="proj-stack">Node · Claude · WhatsApp API</div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-type" data-i18n="p10.t">Sitio web solidario</div>
+        <h3>Ayuda Tolima</h3>
+        <p data-i18n="p10.p">Sitio bilingüe para que colombianos dentro y fuera del país donen productos a los damnificados de los incendios en el Tolima, junto con la Gobernación.</p>
+        <div class="proj-chips">
+          <span class="proj-chip"><span data-i18n="p10.c1">Bilingüe</span></span>
+          <span class="proj-chip"><span data-i18n="p10.c2">Donaciones en especie</span></span>
+        </div>
+        <div class="proj-stack">Next.js · Vercel</div>
+      </article>
+      <article class="proj reveal" style="--d:0.1s">
+        <div class="proj-type" data-i18n="p11.t">App de auditorías</div>
+        <h3>La Comarca</h3>
+        <p data-i18n="p11.p">Auditorías de calidad para restaurantes: hallazgos con fotos, tablero de pendientes y cobertura semana a semana.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p11.c1">En producción</span></span>
+          <span class="proj-chip"><span data-i18n="p11.c2">Fotos desde el celular</span></span>
+        </div>
+        <div class="proj-stack">React · Vite · Vercel Postgres</div>
+        <a class="proj-link" href="https://la-comarca-audits.vercel.app" target="_blank" rel="noopener noreferrer">la-comarca-audits.vercel.app <span class="chev">›</span></a>
+      </article>
+      <article class="proj reveal" style="--d:0.2s">
+        <div class="proj-type" data-i18n="p12.t">Costos e inventario</div>
+        <h3>Veraz</h3>
+        <p data-i18n="p12.p">Sistema de costos e insumos para un buffet: cuánto cuesta cada plato y qué hay en bodega, sin hojas de cálculo.</p>
+        <div class="proj-chips">
+          <span class="proj-chip"><span data-i18n="p12.c1">Costeo por receta</span></span>
+          <span class="proj-chip"><span data-i18n="p12.c2">Control de insumos</span></span>
+        </div>
+        <div class="proj-stack">Next.js · Supabase</div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-type" data-i18n="p13.t">Cobranza con IA + conciliación</div>
+        <h3>TEIICO</h3>
+        <p data-i18n="p13.p">Agente de cobranza por WhatsApp y conciliación bancaria automática para un grupo de 7 empresas que trabaja sobre Odoo.</p>
+        <div class="proj-chips">
+          <span class="proj-chip"><span data-i18n="p13.c1">En desarrollo</span></span>
+          <span class="proj-chip"><span data-i18n="p13.c2">7 empresas</span></span>
+          <span class="proj-chip"><span data-i18n="p13.c3">62 pruebas automáticas</span></span>
+        </div>
+        <div class="proj-stack">Node · TypeScript · Odoo · WhatsApp API</div>
+      </article>
+      <article class="proj reveal" style="--d:0.1s">
+        <div class="proj-type" data-i18n="p14.t">Cotizador de obra</div>
+        <h3>Santana Ingeniería</h3>
+        <p data-i18n="p14.p">Presupuestos de obra eléctrica (APU) con precios actualizados y margen calculado, en minutos y no en días.</p>
+        <div class="proj-chips">
+          <span class="proj-chip"><span data-i18n="p14.c1">En desarrollo</span></span>
+          <span class="proj-chip"><span data-i18n="p14.c2">APU con margen</span></span>
+        </div>
+        <div class="proj-stack">TypeScript</div>
+      </article>
+      <article class="proj reveal" style="--d:0.2s">
+        <div class="proj-type" data-i18n="p15.t">Bot de WhatsApp + CRM</div>
+        <h3>Agencia LD · Asosalud</h3>
+        <p data-i18n="p15.p">Bot de WhatsApp conectado a Zoho CRM para atender y calificar a los interesados cuando no hay nadie en línea.</p>
+        <div class="proj-chips">
+          <span class="proj-chip"><span data-i18n="p15.c1">~630 leads al mes</span></span>
+          <span class="proj-chip"><span data-i18n="p15.c2">Integrado con Zoho</span></span>
+        </div>
+        <div class="proj-stack">Zoho SalesIQ · Zoho CRM</div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-type" data-i18n="p16.t">IA en reuniones</div>
+        <h3>Copiloto de reuniones</h3>
+        <p data-i18n="p16.p">Escucha las reuniones virtuales, las transcribe en el propio computador y sugiere en vivo preguntas, riesgos y compromisos.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p16.c1">Funcionando</span></span>
+          <span class="proj-chip"><span data-i18n="p16.c2">Transcripción 100 % local</span></span>
+        </div>
+        <div class="proj-stack">Python · Whisper · Claude</div>
+      </article>
+      <article class="proj reveal" style="--d:0.1s">
+        <div class="proj-type" data-i18n="p17.t">Trading algorítmico</div>
+        <h3>Claude Live Trading</h3>
+        <p data-i18n="p17.p">Robots de trading con IA que operan 24/7 en MetaTrader 5 y 4, con motores de backtest propios. Mis 24 años en Forex, convertidos en código.</p>
+        <div class="proj-chips">
+          <span class="proj-chip live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span data-i18n="p17.c1">Opera 24/7</span></span>
+          <span class="proj-chip"><span data-i18n="p17.c2">3 cuentas de prueba</span></span>
+          <span class="proj-chip"><span data-i18n="p17.c3">Backtest propio</span></span>
+        </div>
+        <div class="proj-stack">MQL5 · MQL4 · Python</div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ── Por qué yo ─────────────────────────────────────── -->
 <section id="experiencia" class="why">
   <div class="wrap why-inner">
@@ -765,22 +967,6 @@
       <span data-i18n="cta.btn">Escríbeme por WhatsApp</span>
     </a>
     <p class="cta-note" data-i18n="cta.note">Respuesta el mismo día · Primera asesoría sin costo</p>
-  </div>
-</section>
-
-<!-- ── Marcas que confían ────────────────────────────── -->
-<section class="brands">
-  <div class="wrap reveal">
-    <div class="kicker" data-i18n="brands.kicker">Confían en mí</div>
-    <h2 data-i18n="brands.title">Marcas que ya automatizan con GC</h2>
-    <div class="brand-grid">
-      <div class="brand-card"><img src="Logos/Botas-agroindustrial-logo.png" alt="Botas Agroindustrial" loading="lazy"></div>
-      <div class="brand-card"><img src="Logos/arroz-aragon-logo.png" alt="Arroz Aragón" loading="lazy"></div>
-      <div class="brand-card"><img src="Logos/Arroz-paisa-logo.jpg" alt="Arroz Paisa" loading="lazy"></div>
-      <div class="brand-card"><img src="Logos/Olpar-logo.jpg" alt="Olpar Distribuciones" loading="lazy"></div>
-      <div class="brand-card"><img src="Logos/Veraz-Logo.jpg" alt="Veraz" loading="lazy"></div>
-      <div class="brand-card"><img src="Logos/gummybox-logo.png" alt="The Gummy Box Wellness" loading="lazy"></div>
-    </div>
   </div>
 </section>
 
@@ -883,8 +1069,82 @@
       'cta.p': 'Cuéntame qué proceso te roba horas hoy. Te respondo el mismo día con un camino claro para automatizarlo.',
       'cta.btn': 'Escríbeme por WhatsApp',
       'cta.note': 'Respuesta el mismo día · Primera asesoría sin costo',
-      'brands.kicker': 'Confían en mí',
-      'brands.title': 'Marcas que ya automatizan con GC',
+      'nav.proj': 'Proyectos',
+      'proj.kicker': 'Proyectos',
+      'proj.h2': 'Lo que ya está funcionando.',
+      'proj.p': 'Sistemas que he construido para empresas colombianas, y algunos que ya vienen en camino.',
+      'p1.t': 'ERP + MES',
+      'p1.p': 'Toda la fábrica de botas en un solo sistema: pedido, corte, producción por célula, calidad, inventario, despacho, facturación y cartera.',
+      'p1.c1': 'Piloto en planta',
+      'p1.c2': '4 líneas de producción',
+      'p1.c3': '~600 pruebas automáticas',
+      'p2.t': 'Inteligencia comercial',
+      'p2.p': 'Un Excel manual de 192 MB convertido en un proceso diario y automático: rentabilidad, fletes y ventas contra presupuesto por asesor.',
+      'p2.c1': 'En producción',
+      'p2.c2': '65.573 registros sin errores',
+      'p3.t': 'Integración contable',
+      'p3.p': 'Las facturas de proveedores llegan por correo y se causan solas en la contabilidad (AgroWin). Nadie vuelve a digitarlas.',
+      'p3.c1': 'En producción',
+      'p3.c2': '~430 facturas al mes',
+      'p4.t': 'Integración e-commerce',
+      'p4.p': 'Ventas de Shopify y Farmatodo, más las facturas electrónicas de la DIAN, convertidas en archivos listos para importar al software contable.',
+      'p4.c1': 'En producción',
+      'p4.c2': '540 a 600 documentos al mes',
+      'p5.t': 'IA para facturas',
+      'p5.p': 'Facturas en XML, PDF o foto pasan solas a filas contables para Siigo. La IA lee hasta los PDF escaneados.',
+      'p5.c1': 'Funcionando',
+      'p5.c2': 'Lista para Siigo',
+      'p6.t': 'Plataforma + agente de IA',
+      'p6.p': 'Postulación de empresas a un programa público de Bogotá. Un agente de IA revisa los documentos y decide si la empresa queda habilitada.',
+      'p6.c1': 'En producción',
+      'p6.c2': '~200 postulaciones',
+      'p6.c3': 'Cruce con 768 empresas',
+      'p7.t': 'Sitio web + campaña',
+      'p7.p': 'Sitio institucional para la comunidad colombiana en el exterior, con campaña de firmas, contador en vivo y comprobante por correo.',
+      'p7.c1': 'En producción',
+      'p7.c2': 'Bilingüe',
+      'p8.t': 'App de campo',
+      'p8.p': 'App que funciona sin internet para capturar ensayos técnicos en campo, emitir informes en PDF firmados y alimentar un tablero gerencial.',
+      'p8.c1': 'En desarrollo',
+      'p8.c2': 'Funciona sin conexión',
+      'p9.t': 'Bot de ventas con IA',
+      'p9.p': 'Asesor virtual por WhatsApp que atiende a los interesados en intercambios estudiantiles de 5 a 10 p. m., cuando no hay asesores disponibles.',
+      'p9.c1': 'Prototipo probado',
+      'p9.c2': 'Responde 24/7',
+      'p10.t': 'Sitio web solidario',
+      'p10.p': 'Sitio bilingüe para que colombianos dentro y fuera del país donen productos a los damnificados de los incendios en el Tolima, junto con la Gobernación.',
+      'p10.c1': 'Bilingüe',
+      'p10.c2': 'Donaciones en especie',
+      'p11.t': 'App de auditorías',
+      'p11.p': 'Auditorías de calidad para restaurantes: hallazgos con fotos, tablero de pendientes y cobertura semana a semana.',
+      'p11.c1': 'En producción',
+      'p11.c2': 'Fotos desde el celular',
+      'p12.t': 'Costos e inventario',
+      'p12.p': 'Sistema de costos e insumos para un buffet: cuánto cuesta cada plato y qué hay en bodega, sin hojas de cálculo.',
+      'p12.c1': 'Costeo por receta',
+      'p12.c2': 'Control de insumos',
+      'p13.t': 'Cobranza con IA + conciliación',
+      'p13.p': 'Agente de cobranza por WhatsApp y conciliación bancaria automática para un grupo de 7 empresas que trabaja sobre Odoo.',
+      'p13.c1': 'En desarrollo',
+      'p13.c2': '7 empresas',
+      'p13.c3': '62 pruebas automáticas',
+      'p14.t': 'Cotizador de obra',
+      'p14.p': 'Presupuestos de obra eléctrica (APU) con precios actualizados y margen calculado, en minutos y no en días.',
+      'p14.c1': 'En desarrollo',
+      'p14.c2': 'APU con margen',
+      'p15.t': 'Bot de WhatsApp + CRM',
+      'p15.p': 'Bot de WhatsApp conectado a Zoho CRM para atender y calificar a los interesados cuando no hay nadie en línea.',
+      'p15.c1': '~630 leads al mes',
+      'p15.c2': 'Integrado con Zoho',
+      'p16.t': 'IA en reuniones',
+      'p16.p': 'Escucha las reuniones virtuales, las transcribe en el propio computador y sugiere en vivo preguntas, riesgos y compromisos.',
+      'p16.c1': 'Funcionando',
+      'p16.c2': 'Transcripción 100 % local',
+      'p17.t': 'Trading algorítmico',
+      'p17.p': 'Robots de trading con IA que operan 24/7 en MetaTrader 5 y 4, con motores de backtest propios. Mis 24 años en Forex, convertidos en código.',
+      'p17.c1': 'Opera 24/7',
+      'p17.c2': '3 cuentas de prueba',
+      'p17.c3': 'Backtest propio',
       'foot.tag': 'Automatización con IA para tu negocio',
       'foot.rights': '© 2026 GC Automation. Todos los derechos reservados.'
     },
@@ -950,8 +1210,82 @@
       'cta.p': "Tell me which process steals your hours today. I'll reply the same day with a clear path to automate it.",
       'cta.btn': 'Message me on WhatsApp',
       'cta.note': 'Same-day reply · First consultation free',
-      'brands.kicker': 'Trusted by',
-      'brands.title': 'Brands already automating with GC',
+      'nav.proj': 'Projects',
+      'proj.kicker': 'Projects',
+      'proj.h2': 'Already up and running.',
+      'proj.p': 'Systems I have built for Colombian companies, and a few more on the way.',
+      'p1.t': 'ERP + MES',
+      'p1.p': 'The whole boot factory in a single system: orders, cutting, cell-based production, quality, inventory, shipping, invoicing and receivables.',
+      'p1.c1': 'Live pilot on the plant floor',
+      'p1.c2': '4 production lines',
+      'p1.c3': '~600 automated tests',
+      'p2.t': 'Sales intelligence',
+      'p2.p': 'A manual 192 MB Excel file turned into an automatic daily process: profitability, freight and sales vs. budget per sales rep.',
+      'p2.c1': 'In production',
+      'p2.c2': '65,573 records, zero errors',
+      'p3.t': 'Accounting integration',
+      'p3.p': 'Supplier invoices arrive by email and post themselves into the accounting system (AgroWin). Nobody types them again.',
+      'p3.c1': 'In production',
+      'p3.c2': '~430 invoices a month',
+      'p4.t': 'E-commerce integration',
+      'p4.p': 'Shopify and Farmatodo sales, plus DIAN e-invoices, turned into files ready to import into the accounting software.',
+      'p4.c1': 'In production',
+      'p4.c2': '540 to 600 documents a month',
+      'p5.t': 'AI for invoices',
+      'p5.p': 'Invoices in XML, PDF or photo become accounting rows for Siigo automatically. The AI even reads scanned PDFs.',
+      'p5.c1': 'Running',
+      'p5.c2': 'Ready for Siigo',
+      'p6.t': 'Platform + AI agent',
+      'p6.p': 'Company applications for a public program in Bogotá. An AI agent reviews the documents and decides whether the company qualifies.',
+      'p6.c1': 'In production',
+      'p6.c2': '~200 applications',
+      'p6.c3': 'Cross-checked against 768 companies',
+      'p7.t': 'Website + campaign',
+      'p7.p': 'Institutional site for the Colombian community abroad, with a petition campaign, live counter and email receipts.',
+      'p7.c1': 'In production',
+      'p7.c2': 'Bilingual',
+      'p8.t': 'Field app',
+      'p8.p': 'Offline-first app to capture technical tests in the field, issue signed PDF reports and feed a management dashboard.',
+      'p8.c1': 'In development',
+      'p8.c2': 'Works offline',
+      'p9.t': 'AI sales bot',
+      'p9.p': 'Virtual WhatsApp advisor that serves student-exchange leads from 5 to 10 p.m., when no human advisors are available.',
+      'p9.c1': 'Prototype tested',
+      'p9.c2': 'Answers 24/7',
+      'p10.t': 'Charity website',
+      'p10.p': 'Bilingual site for Colombians at home and abroad to donate goods to wildfire victims in Tolima, together with the regional government.',
+      'p10.c1': 'Bilingual',
+      'p10.c2': 'In-kind donations',
+      'p11.t': 'Audit app',
+      'p11.p': 'Quality audits for restaurants: findings with photos, a pending-items board and week-by-week coverage.',
+      'p11.c1': 'In production',
+      'p11.c2': 'Photos from your phone',
+      'p12.t': 'Costing & inventory',
+      'p12.p': 'Costing and supplies system for a buffet: what every dish costs and what is in stock, without spreadsheets.',
+      'p12.c1': 'Recipe costing',
+      'p12.c2': 'Supplies control',
+      'p13.t': 'AI collections + reconciliation',
+      'p13.p': 'WhatsApp collections agent and automatic bank reconciliation for a group of 7 companies running on Odoo.',
+      'p13.c1': 'In development',
+      'p13.c2': '7 companies',
+      'p13.c3': '62 automated tests',
+      'p14.t': 'Construction quoting',
+      'p14.p': 'Electrical construction budgets (unit price analysis) with up-to-date prices and margin, in minutes instead of days.',
+      'p14.c1': 'In development',
+      'p14.c2': 'Unit prices with margin',
+      'p15.t': 'WhatsApp bot + CRM',
+      'p15.p': 'WhatsApp bot connected to Zoho CRM to serve and qualify leads when nobody is online.',
+      'p15.c1': '~630 leads a month',
+      'p15.c2': 'Integrated with Zoho',
+      'p16.t': 'AI in meetings',
+      'p16.p': 'Listens to online meetings, transcribes them on the computer itself and suggests questions, risks and commitments live.',
+      'p16.c1': 'Running',
+      'p16.c2': '100% local transcription',
+      'p17.t': 'Algorithmic trading',
+      'p17.p': 'AI trading robots running 24/7 on MetaTrader 5 and 4, with in-house backtesting engines. My 24 years in Forex, turned into code.',
+      'p17.c1': 'Runs 24/7',
+      'p17.c2': '3 test accounts',
+      'p17.c3': 'In-house backtesting',
       'foot.tag': 'AI automation for your business',
       'foot.rights': '© 2026 GC Automation. All rights reserved.'
     }
