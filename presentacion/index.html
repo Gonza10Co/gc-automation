@@ -138,6 +138,13 @@ html[data-theme="light"] .pulse{filter:invert(1);opacity:.06}
 .logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);margin-top:clamp(20px,2.6vw,40px)}
 .logo{background:var(--logo-card);border-radius:18px;height:clamp(90px,11vw,170px);display:flex;align-items:center;justify-content:center;padding:clamp(14px,1.6vw,24px);border:1px solid var(--border);overflow:hidden}
 .logo img{width:100%;height:100%;object-fit:contain;display:block}
+.projs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(8px,.9vw,14px);margin-top:clamp(18px,2.2vw,34px)}
+.proj{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:clamp(12px,1.15vw,18px);display:flex;flex-direction:column;gap:6px;min-width:0}
+.proj b{font-size:clamp(14px,1.18vw,19px);font-weight:700;letter-spacing:-0.015em;line-height:1.2}
+.proj p{font-size:clamp(12px,.98vw,15px);color:var(--text-muted);line-height:1.35}
+.proj span{margin-top:auto;padding-top:4px;font-family:var(--font-mono);font-size:clamp(9px,.72vw,11.5px);text-transform:uppercase;letter-spacing:.08em;color:var(--primary)}
+.proj.star{border-color:color-mix(in oklch,var(--accent) 60%,transparent);background:color-mix(in oklch,var(--accent) 10%,var(--surface))}
+.proj.star b,.proj.star span{color:var(--accent)}
 .also{margin-top:clamp(16px,2vw,28px);display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
 .also .k{font-family:var(--font-mono);font-size:clamp(11px,.9vw,14px);letter-spacing:0;color:var(--text-subtle);margin-right:6px}
 .chip{font-size:clamp(13px,1.1vw,17px);font-weight:600;padding:7px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--border)}
@@ -240,6 +247,7 @@ html[data-theme="light"] .pulse{filter:invert(1);opacity:.06}
 
 /* ════════ PANTALLAS MEDIANAS ════════ */
 @media (max-width:1100px) and (min-width:761px){
+  .projs{grid-template-columns:repeat(4,minmax(0,1fr))}
   .cards.c4{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
@@ -261,7 +269,7 @@ html[data-theme="light"] .pulse{filter:invert(1);opacity:.06}
   .facts{grid-template-columns:1fr 1fr}
   .road-row{grid-template-columns:34px minmax(0,1fr) auto}
   .road-row .rbar{display:none}
-  .logos,.cards.sectors{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .logos,.cards.sectors,.projs{grid-template-columns:repeat(2,minmax(0,1fr))}
   .logo{height:96px}
   .flow{flex-direction:column}
   .flow .arrow{transform:rotate(90deg)}
@@ -377,22 +385,25 @@ body.pdf .slide{transition:none}
   <section class="slide">
     <div class="kicker">Confían en nosotros</div>
     <h2 class="st">Empresas que ya <span class="hl">trabajan distinto</span>.</h2>
-    <div class="logos">
-      <div class="logo"><img src="assets/botas.png" alt="Botas Agroindustrial"></div>
-      <div class="logo"><img src="assets/olpar.jpg" alt="OlPar Distribuciones"></div>
-      <div class="logo"><img src="assets/gummybox.png" alt="The Gummy Box"></div>
-      <div class="logo"><img src="assets/arroz-aragon.png" alt="Molino Aragón"></div>
-      <div class="logo"><img src="assets/arroz-paisa.jpg" alt="Arroz Paisa"></div>
-      <div class="logo"><img src="assets/veraz.jpg" alt="Veraz"></div>
-    </div>
-    <div class="also">
-      <span class="k">Y también</span>
-      <span class="chip star">Fábricas de Productividad</span>
-      <span class="chip">Grasas y Derivados</span>
-      <span class="chip">TEIICO</span>
-      <span class="chip">NorPass</span>
-      <span class="chip">Gestivalor</span>
-      <span class="chip">La Comarca</span>
+    <div class="projs">
+      <div class="proj"><b>Botas Agroindustriales</b><p>ERP + MES de la fábrica de calzado, del pedido al despacho</p><span>Manufactura</span></div>
+      <div class="proj"><b>OlPar Distribuciones</b><p>Rentabilidad, fletes y presupuesto al día, sin el Excel de 192 MB</p><span>Distribución</span></div>
+      <div class="proj"><b>Grasas y Derivados</b><p>Las facturas del correo se causan solas en el contable</p><span>Agroindustria</span></div>
+      <div class="proj"><b>The Gummy Box</b><p>Ventas de Shopify y Farmatodo listas para el contable</p><span>Consumo masivo</span></div>
+      <div class="proj"><b>Molino Aragón</b><p>IA que pasa facturas en XML, PDF o foto a Siigo</p><span>Alimentos</span></div>
+      <div class="proj"><b>TEIICO</b><p>Cobranza con IA por WhatsApp y conciliación bancaria, 7 empresas</p><span>Finanzas</span></div>
+      <div class="proj"><b>Santana Ingeniería</b><p>Cotizador de obra eléctrica en minutos</p><span>Ingeniería</span></div>
+      <div class="proj"><b>SOLIWEL</b><p>App de campo sin internet, con informes y tablero</p><span>Inspección industrial</span></div>
+      <div class="proj"><b>Gestivalor</b><p>Asistente que vende por WhatsApp en la noche</p><span>Ventas</span></div>
+      <div class="proj"><b>Agencia LD · Asosalud</b><p>Atención por WhatsApp conectada al CRM</p><span>Salud</span></div>
+      <div class="proj"><b>La Comarca</b><p>Auditorías de calidad para restaurantes</p><span>Restaurantes</span></div>
+      <div class="proj"><b>Veraz</b><p>Costos e inventario de un buffet</p><span>Restaurantes</span></div>
+      <div class="proj"><b>NorPass</b><p>Plataforma con agente de IA para postulaciones</p><span>Internacionalización</span></div>
+      <div class="proj"><b>Diáspora Colombiana</b><p>Sitio institucional con campaña de firmas</p><span>Gremios</span></div>
+      <div class="proj"><b>Ayuda Tolima</b><p>Sitio de donaciones para damnificados</p><span>Social</span></div>
+      <div class="proj"><b>Copiloto de reuniones</b><p>Escucha la reunión y sugiere qué preguntar</p><span>Producto propio</span></div>
+      <div class="proj"><b>Claude Live Trading</b><p>Robots de trading con pruebas propias</p><span>Producto propio</span></div>
+      <div class="proj star"><b>Fábricas de Productividad</b><p>Desarrollo de software para el programa de Colombia Productiva</p><span>Programa nacional</span></div>
     </div>
   </section>
 
