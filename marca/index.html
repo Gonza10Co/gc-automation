@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marca GC Automation</title>
+<link rel="icon" href="archivos/gc-favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<script src="simbolo.js"></script>
+<style>
+:root{
+  --tinta:#111A2E; --tinta-2:#1A2540; --azul:#3B6BF6; --cielo:#7FB2FF; --oro:#F2A91F; --niebla:#EEF2F8;
+  --texto:#111A2E; --suave:#56627C; --linea:#D6DDEA;
+  --x:"wdth" 125;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Archivo',system-ui,sans-serif;background:var(--niebla);color:var(--texto);-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.ex{font-stretch:125%;font-variation-settings:var(--x)}
+h2{font-stretch:125%;font-variation-settings:var(--x);font-weight:800;font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;line-height:1.1;margin-bottom:12px}
+.intro{color:var(--suave);font-size:clamp(16px,1.5vw,18px);max-width:60ch}
+section{padding:clamp(56px,8vw,104px) 0;border-top:1px solid var(--linea)}
+
+/* ═══ Portada ═══ */
+.hero{background:var(--tinta);color:#fff;padding:clamp(48px,8vw,110px) 0;border:0;overflow:hidden;position:relative}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(32px,6vw,90px);align-items:center}
+.hero .mark svg{width:100%;height:auto;max-width:440px;display:block}
+.word{display:flex;flex-direction:column;gap:6px}
+.word .wm{font-size:clamp(40px,6.2vw,84px);line-height:.95;letter-spacing:-.03em;font-stretch:125%;font-variation-settings:var(--x)}
+.wm b{font-weight:800}.wm span{font-weight:400}
+.hero p{color:#B9C4DA;font-size:clamp(16px,1.6vw,20px);max-width:44ch;margin-top:26px}
+.hero p em{font-style:normal;color:var(--oro)}
+
+/* ═══ Construcción ═══ */
+.build{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,70px);align-items:center;margin-top:40px}
+.build .canvas{background:#fff;border:1px solid var(--linea);border-radius:20px;padding:clamp(16px,3vw,36px)}
+.build .canvas svg{width:100%;height:auto;display:block}
+.parts{list-style:none;display:flex;flex-direction:column;gap:22px}
+.parts li{display:grid;grid-template-columns:28px 1fr;gap:14px}
+.parts .sw{width:28px;height:28px;border-radius:50%;margin-top:2px}
+.parts b{display:block;font-size:18px;font-weight:700}
+.parts span{color:var(--suave);font-size:16px}
+
+/* ═══ Versiones ═══ */
+.lockups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:40px}
+.lk{border-radius:20px;min-height:220px;display:flex;align-items:center;justify-content:center;padding:32px;position:relative}
+.lk .cap{position:absolute;left:20px;bottom:14px;font-size:13px;opacity:.7}
+.lock{display:flex;align-items:center;gap:18px}
+.lock .wm{font-size:clamp(26px,3vw,38px);letter-spacing:-.025em;line-height:1}
+.lock small{display:block;font-size:clamp(12px,1.1vw,14px);margin-top:6px;opacity:.72;letter-spacing:0;font-stretch:100%;font-variation-settings:"wdth" 100}
+.stack{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.stack .wm{font-size:clamp(26px,3vw,36px);letter-spacing:-.025em;line-height:1}
+.on-niebla{background:#fff;border:1px solid var(--linea)}
+.on-tinta{background:var(--tinta);color:#fff}
+.on-azul{background:var(--azul);color:#fff}
+.on-oro{background:var(--niebla);border:1px dashed var(--linea)}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.rule{background:#fff;border:1px solid var(--linea);border-radius:16px;padding:20px}
+.rule b{display:block;margin-bottom:4px}
+.rule span{color:var(--suave);font-size:15px}
+
+/* ═══ Color ═══ */
+.palette{display:grid;grid-template-columns:2.2fr 1.4fr 1fr 1fr 1.6fr;gap:12px;margin-top:40px}
+.sw-big{border-radius:18px;min-height:260px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px}
+.sw-big b{font-size:20px;font-stretch:125%;font-variation-settings:var(--x);font-weight:700}
+.sw-big code{font-family:inherit;font-size:14px;opacity:.8}
+.sw-big span{font-size:14px;opacity:.85;margin-top:6px;line-height:1.35}
+.ratio{display:flex;height:18px;border-radius:999px;overflow:hidden;margin-top:18px;border:1px solid var(--linea)}
+.ratio i{display:block}
+.ratio-cap{display:flex;justify-content:space-between;color:var(--suave);font-size:14px;margin-top:8px}
+
+/* ═══ Tipografía ═══ */
+.type{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);margin-top:40px;align-items:end}
+.spec{font-stretch:125%;font-variation-settings:var(--x);font-weight:800;font-size:clamp(40px,5.6vw,76px);line-height:.95;letter-spacing:-.035em}
+.spec-body{font-size:18px;color:var(--suave);max-width:46ch}
+.spec-body p+p{margin-top:12px}
+.scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:40px}
+.scale>div{background:#fff;border:1px solid var(--linea);border-radius:16px;padding:20px}
+.scale .s{line-height:1.05;margin-bottom:10px}
+.scale span{color:var(--suave);font-size:14px}
+
+/* ═══ Aplicaciones ═══ */
+.apps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:40px}
+.app{background:#fff;border:1px solid var(--linea);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.app .cap{color:var(--suave);font-size:14px}
+.a-wa{grid-column:span 2}.a-tab{grid-column:span 4}.a-slide{grid-column:span 4}.a-card{grid-column:span 2}
+.wa{display:flex;align-items:center;gap:14px;background:#F0F2F5;border-radius:14px;padding:14px}
+.wa .av{width:58px;height:58px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--tinta);display:grid;place-items:center}
+.wa .av svg{width:62px;height:62px}
+.wa b{display:block;font-size:16px}.wa span{font-size:13px;color:#667781}
+.tab{background:#DEE3EC;border-radius:12px 12px 0 0;padding:10px 10px 0}
+.tab .t{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:10px 10px 0 0;padding:9px 16px;font-size:14px}
+.tab .t svg{width:16px;height:16px}
+.bar{background:#fff;border:1px solid #DEE3EC;border-top:0;border-radius:0 0 12px 12px;padding:10px 14px;font-size:14px;color:var(--suave)}
+.slide{aspect-ratio:16/9;background:var(--tinta);border-radius:14px;color:#fff;padding:6%;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.slide .t{font-stretch:125%;font-variation-settings:var(--x);font-weight:800;font-size:clamp(20px,3vw,38px);line-height:1;letter-spacing:-.03em;max-width:13ch}
+.slide .t i{font-style:normal;color:var(--cielo)}
+.slide .f{display:flex;justify-content:space-between;align-items:end;font-size:clamp(11px,1vw,14px);color:#B9C4DA}
+.slide .ghost{position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:62%;opacity:.12}
+.card2{display:flex;flex-direction:column;gap:12px}
+.bc{aspect-ratio:1.75;border-radius:12px;padding:8%;display:flex;flex-direction:column;justify-content:space-between}
+.bc.front{background:var(--tinta);align-items:center;justify-content:center}
+.bc.front svg{width:34%;height:auto}
+.bc.back{background:#fff;border:1px solid var(--linea);font-size:12px;color:var(--suave)}
+.bc.back b{display:block;color:var(--texto);font-size:15px;font-stretch:125%;font-variation-settings:var(--x);font-weight:700}
+.bc.back .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--oro);margin-right:6px}
+
+/* ═══ Archivos ═══ */
+.files{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:32px}
+.files a{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--texto);display:flex;align-items:center;gap:12px}
+.files a:hover,.files a:focus-visible{border-color:var(--azul);outline:none}
+.files a svg{width:34px;height:34px;flex-shrink:0}
+.files b{display:block;font-size:15px}.files span{font-size:13px;color:var(--suave)}
+footer{padding:40px 0 60px;color:var(--suave);font-size:14px}
+
+@media (max-width:860px){
+  .hero .wrap,.build,.type{grid-template-columns:1fr}
+  .hero .mark svg{max-width:240px}
+  .lockups,.rules,.files{grid-template-columns:1fr}
+  .palette{grid-template-columns:1fr 1fr}
+  .palette .sw-big:first-child{grid-column:span 2}
+  .sw-big{min-height:150px}
+  .scale{grid-template-columns:1fr 1fr}
+  .apps{grid-template-columns:1fr}
+  .a-wa,.a-tab,.a-slide,.a-card{grid-column:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="mark" id="heroMark"></div>
+    <div>
+      <div class="word"><div class="wm"><b>GC</b> <span>Automation</span></div></div>
+      <p>La C de Gonzalo Correa se abre y de su centro sale un pulso. El proceso arranca adentro de la empresa, corre solo y termina en <em>un punto oro: el resultado</em>.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <h2>Cómo está construido</h2>
+    <p class="intro">Tres piezas sobre una grilla de 64. Cada una tiene un trabajo, y por eso el símbolo se sigue leyendo en 16 píxeles.</p>
+    <div class="build">
+      <div class="canvas" id="buildMark"></div>
+      <ul class="parts">
+        <li><i class="sw" style="background:var(--tinta)"></i><div><b>La C</b><span>Un círculo de radio 13 con una abertura de 96°. Es la empresa: sólida, con la puerta abierta hacia afuera.</span></div></li>
+        <li><i class="sw" style="background:var(--cielo)"></i><div><b>El pulso</b><span>Nace en el centro exacto de la C, sale por la abertura y ahí se dispara: el trabajo que ahora hace el sistema.</span></div></li>
+        <li><i class="sw" style="background:var(--oro)"></i><div><b>El punto oro</b><span>El único elemento cálido de la marca. Marca el resultado y nunca se usa como decoración.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Versiones del logo</h2>
+    <p class="intro">La horizontal es la principal. La vertical, para espacios cuadrados. El símbolo solo, para avatar y favicon.</p>
+    <div class="lockups">
+      <div class="lk on-niebla"><div class="lock" data-mark='{"ring":false}' data-size="64"><div class="wm ex"><b>GC</b> <span>Automation</span><small>Software a la medida</small></div></div><span class="cap">Principal sobre claro</span></div>
+      <div class="lk on-tinta"><div class="lock" data-mark='{"ring":true}' data-size="64"><div class="wm ex"><b>GC</b> <span>Automation</span><small>Software a la medida</small></div></div><span class="cap">Principal sobre tinta</span></div>
+      <div class="lk on-azul"><div class="lock" data-mark='{"ring":false,"bg":"#FFFFFF","c":"#111A2E","p":"#3B6BF6"}' data-size="64"><div class="wm ex"><b>GC</b> <span>Automation</span><small>Software a la medida</small></div></div><span class="cap">Sobre azul</span></div>
+      <div class="lk on-niebla"><div class="stack" data-mark='{"ring":true}' data-size="96"><div class="wm ex"><b>GC</b> <span>Automation</span></div></div><span class="cap">Vertical</span></div>
+    </div>
+    <div class="rules">
+      <div class="rule"><b>Espacio libre</b><span>Alrededor del logo, como mínimo el alto de la C. Nada de texto ni bordes dentro de ese margen.</span></div>
+      <div class="rule"><b>Tamaño mínimo</b><span>Horizontal: 120 px de ancho. Símbolo solo: 16 px.</span></div>
+      <div class="rule"><b>No se hace</b><span>Estirar, cambiar los colores del pulso, poner sombras o usar el oro en otro lugar del símbolo.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Color</h2>
+    <p class="intro">La tinta y el azul hablan el lenguaje de la banca: confianza. El oro llama la atención, y por eso se usa poco.</p>
+    <div class="palette">
+      <div class="sw-big" style="background:var(--tinta);color:#fff"><b>Tinta</b><code>#111A2E</code><span>Fondos de presentaciones, títulos y textos</span></div>
+      <div class="sw-big" style="background:var(--azul);color:#fff"><b>Azul GC</b><code>#3B6BF6</code><span>Botones, enlaces y acciones</span></div>
+      <div class="sw-big" style="background:var(--cielo);color:var(--tinta)"><b>Cielo</b><code>#7FB2FF</code><span>El pulso y los datos</span></div>
+      <div class="sw-big" style="background:var(--oro);color:var(--tinta)"><b>Oro</b><code>#F2A91F</code><span>Solo el resultado</span></div>
+      <div class="sw-big" style="background:var(--niebla);color:var(--tinta);border:1px solid var(--linea)"><b>Niebla</b><code>#EEF2F8</code><span>Fondos claros y documentos</span></div>
+    </div>
+    <div class="ratio"><i style="flex:55;background:var(--tinta)"></i><i style="flex:28;background:var(--niebla)"></i><i style="flex:11;background:var(--azul)"></i><i style="flex:4;background:var(--cielo)"></i><i style="flex:2;background:var(--oro)"></i></div>
+    <div class="ratio-cap"><span>Proporción en una pieza típica</span><span>el oro no pasa del 2 %</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Tipografía</h2>
+    <p class="intro">Una sola familia, Archivo, en dos anchos. Gratis en Google Fonts, así que funciona igual en la web, en las presentaciones y en los documentos.</p>
+    <div class="type">
+      <div class="spec">Su operación en piloto automático.</div>
+      <div class="spec-body">
+        <p><b style="color:var(--texto)">Archivo expandida</b> para el logo y los titulares. Ancha y firme, como la rotulación de una planta industrial.</p>
+        <p><b style="color:var(--texto)">Archivo normal</b> para leer: propuestas, slides con detalle y la web. Este párrafo está escrito con ella.</p>
+      </div>
+    </div>
+    <div class="scale">
+      <div><div class="s ex" style="font-size:44px;font-weight:800;letter-spacing:-.03em">Aa</div><span>Titular · expandida 800</span></div>
+      <div><div class="s ex" style="font-size:44px;font-weight:400;letter-spacing:-.02em">Aa</div><span>Logo · expandida 400</span></div>
+      <div><div class="s" style="font-size:44px;font-weight:600">Aa</div><span>Subtítulo · normal 600</span></div>
+      <div><div class="s" style="font-size:44px;font-weight:400">Aa</div><span>Texto · normal 400</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Así se ve en el día a día</h2>
+    <p class="intro">Donde los clientes ven la marca primero: WhatsApp, el navegador, la presentación y la tarjeta.</p>
+    <div class="apps">
+      <div class="app a-wa">
+        <div class="wa"><div class="av" data-mark='{"frame":false}' data-size="62"></div><div><b>GC Automation</b><span>Cuenta de empresa</span></div></div>
+        <span class="cap">Foto de perfil de WhatsApp Business. El círculo recorta el fondo, el símbolo queda completo.</span>
+      </div>
+      <div class="app a-tab">
+        <div><div class="tab"><span class="t" data-mark='{"ring":false}' data-size="16">GC Automation · Software a la medida</span></div><div class="bar">gc-automation.com</div></div>
+        <span class="cap">Favicon en la pestaña del navegador, a 16 px.</span>
+      </div>
+      <div class="app a-slide">
+        <div class="slide"><div class="ghost" data-mark='{"frame":false,"c":"#FFFFFF","p":"#7FB2FF"}' data-size="400"></div>
+          <div class="lock" data-mark='{"ring":true}' data-size="40"><div class="wm ex" style="font-size:18px"><b>GC</b> <span>Automation</span></div></div>
+          <div class="t">Su operación en <i>piloto automático.</i></div>
+          <div class="f"><span>Gonzalo Correa, fundador</span><span>gc-automation.com</span></div></div>
+        <span class="cap">Portada de presentación comercial.</span>
+      </div>
+      <div class="app a-card">
+        <div class="card2">
+          <div class="bc front" data-mark='{"frame":false}' data-size="80"></div>
+          <div class="bc back"><div><b>Gonzalo Correa</b>Fundador</div><div><span class="dot"></span>317 637 9339<br>gc-automation.com<br>Ibagué, Colombia</div></div>
+        </div>
+        <span class="cap">Tarjeta de presentación, frente y respaldo.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Archivos</h2>
+    <p class="intro">Listos para usar. El SVG es el original: escala a cualquier tamaño sin perder calidad.</p>
+    <div class="files">
+      <a href="archivos/gc-simbolo.svg" download><span data-mark='{"ring":true}' data-size="34"></span><div><b>Símbolo con marco</b><span>SVG · app, favicon</span></div></a>
+      <a href="archivos/gc-simbolo-tinta.png" download><span data-mark='{"frame":false}' data-size="34" style="background:var(--tinta);border-radius:50%;display:block;width:34px;height:34px"></span><div><b>Perfil WhatsApp y Meta</b><span>PNG 1024 × 1024</span></div></a>
+      <a href="archivos/gc-simbolo-transparente.svg" download><span data-mark='{"frame":false,"c":"#111A2E","p":"#3B6BF6"}' data-size="34"></span><div><b>Símbolo sin fondo</b><span>SVG · sobre claro</span></div></a>
+      <a href="archivos/gc-logo-horizontal.png" download><span data-mark='{"ring":false}' data-size="34"></span><div><b>Logo horizontal claro</b><span>PNG transparente</span></div></a>
+      <a href="archivos/gc-logo-horizontal-blanco.png" download><span data-mark='{"ring":true}' data-size="34"></span><div><b>Logo horizontal oscuro</b><span>PNG transparente</span></div></a>
+      <a href="archivos/gc-favicon-32.png" download><span data-mark='{"ring":false}' data-size="34"></span><div><b>Favicon</b><span>PNG 32 y 180 px</span></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Manual de marca GC Automation, versión 1, octubre de 2026</div></footer>
+
+<script>
+document.getElementById('heroMark').innerHTML=GC.svg({size:440,ring:true,id:'hero'});
+// lámina de construcción con guías
+(function(){
+  const s=GC.svg({size:520,ring:false,frame:true,bg:'#FFFFFF',c:'#111A2E',p:'#7FB2FF',id:'b'});
+  const guides=`<g fill="none" stroke="#3B6BF6" stroke-width=".18" opacity=".7">
+    ${Array.from({length:9},(_,k)=>`<line x1="${k*8}" y1="0" x2="${k*8}" y2="64" stroke="#D6DDEA"/><line x1="0" y1="${k*8}" x2="64" y2="${k*8}" stroke="#D6DDEA"/>`).join('')}
+    <circle cx="27" cy="32" r="13" stroke-dasharray="1 1"/><circle cx="27" cy="32" r="16.3" stroke-dasharray=".6 1.2"/><circle cx="27" cy="32" r="9.7" stroke-dasharray=".6 1.2"/>
+    <line x1="27" y1="32" x2="35.7" y2="22.3"/><line x1="27" y1="32" x2="35.7" y2="41.7"/><line x1="4" y1="32" x2="60" y2="32" stroke-dasharray="1 1"/>
+    <circle cx="27" cy="32" r=".7" fill="#3B6BF6"/><circle cx="53.6" cy="32" r="6" stroke="#F2A91F" stroke-dasharray=".6 .8"/></g>
+    <text x="37" y="19.6" font-size="2" fill="#3B6BF6" font-family="Archivo">96°</text>
+    <text x="7" y="13.5" font-size="2" fill="#3B6BF6" font-family="Archivo">r 13</text>`;
+  document.getElementById('buildMark').innerHTML=s.replace('</svg>',guides+'</svg>').replace('<rect width="64" height="64" rx="15" fill="#FFFFFF"/>','');
+})();
+document.querySelectorAll('[data-mark]').forEach((el,n)=>{
+  const o=JSON.parse(el.dataset.mark);o.size=+el.dataset.size;o.id='m'+n;
+  el.insertAdjacentHTML('afterbegin',GC.svg(o));
+});
+</script>
+</body>
+</html>

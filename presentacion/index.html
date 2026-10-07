@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GC Automation · Presentación</title>
+<meta name="description" content="GC Automation: software a la medida, integraciones contables y asistentes con IA para empresas colombianas.">
+<link rel="icon" href="assets/gc-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+/* ════════ MOTOR "ACERO" (skill demo-presentation de Agro) con la marca GC Automation ════════
+   · Escritorio / proyector / pantalla compartida: una slide a la vez, texto grande.
+   · Celular vertical: las slides se apilan y se leen con scroll normal.
+   · Imprimir / PDF: una slide por página 16:9.
+   ════════════════════════════════════════════════════════════════════════════════════ */
+:root{
+  --font-sans:'Archivo',-apple-system,system-ui,sans-serif;
+  --font-mono:'Archivo',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.6,.2,1);
+}
+html[data-theme="dark"]{
+  --bg:#111A2E;
+  --surface:#1A2540;
+  --surface-2:#22304F;
+  --border:#2C3A5C;
+  --border-strong:#41517A;
+  --text:#FFFFFF;
+  --text-muted:#C3CCDD;
+  --text-subtle:#8E9AB4;
+  --primary:#5B8CFF;
+  --primary-2:#7FB2FF;
+  --primary-subtle:#1E3270;
+  --accent:#F2A91F;
+  --accent-subtle:#3A2E14;
+  --good:#3DD68C;
+  --bad:#FF8A7A;
+  --logo-card:#FFFFFF;
+}
+html[data-theme="light"]{
+  --bg:#EEF2F8;
+  --surface:#FFFFFF;
+  --surface-2:#F4F6FB;
+  --border:#D6DDEA;
+  --border-strong:#B7C2D6;
+  --text:#111A2E;
+  --text-muted:#46536E;
+  --text-subtle:#6B7690;
+  --primary:#3B6BF6;
+  --primary-2:#2F8CFF;
+  --primary-subtle:#DCE6FF;
+  --accent:#B87B05;
+  --accent-subtle:#FBEFD5;
+  --good:#16865A;
+  --bad:#C2412F;
+  --logo-card:#FFFFFF;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--text);overflow:hidden;
+  -webkit-font-smoothing:antialiased;letter-spacing:-0.01em}
+
+/* ════════ DECK ════════ */
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(32px,5vw,80px) clamp(40px,7vw,120px);
+  opacity:0;visibility:hidden;transform:translateY(18px) scale(.992);
+  transition:opacity .5s var(--ease),transform .5s var(--ease),visibility .5s;overflow:hidden}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.slide::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(110% 80% at 100% 0%,var(--primary-subtle) 0%,transparent 50%),
+             radial-gradient(80% 60% at 0% 100%,var(--accent-subtle) 0%,transparent 45%);opacity:.55}
+
+/* ════════ TIPOGRAFÍA (grande: se tiene que leer en un celular por pantalla compartida) ════════ */
+.kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-sans);
+  font-size:clamp(15px,1.3vw,20px);font-weight:600;letter-spacing:0;
+  color:var(--accent);margin-bottom:clamp(12px,1.4vw,22px)}
+.kicker::before{content:"";width:30px;height:2px;background:var(--accent);border-radius:2px}
+h1.title{font-size:clamp(36px,5.2vw,84px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;font-stretch:125%;font-variation-settings:"wdth" 125}
+h2.st{font-size:clamp(28px,3.5vw,56px);font-weight:800;line-height:1.06;letter-spacing:-0.03em;font-stretch:125%;font-variation-settings:"wdth" 125;margin-bottom:clamp(8px,1vw,16px)}
+.lead{font-size:clamp(17px,1.75vw,27px);color:var(--text-muted);line-height:1.45;max-width:46ch}
+.lead b{color:var(--text);font-weight:600}
+.hl{background:linear-gradient(100deg,var(--primary),var(--primary-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.acc{color:var(--accent)}
+
+/* ════════ PORTADA ════════ */
+.brandmark{display:flex;align-items:center;gap:14px}
+.brandmark img{width:clamp(44px,4vw,60px);height:auto}
+.brandmark .bn b{font-weight:800}
+.brandmark .bn{font-weight:400;font-stretch:125%;font-variation-settings:"wdth" 125;font-size:clamp(18px,1.6vw,24px);letter-spacing:-0.01em}
+.brandmark .bn small{display:block;font-family:var(--font-sans);font-stretch:100%;font-variation-settings:"wdth" 100;font-size:clamp(12px,.95vw,15px);font-weight:500;color:var(--text-subtle);letter-spacing:0;margin-top:2px}
+.cover{justify-content:space-between}
+.cover h1{max-width:15ch;margin:clamp(10px,1vw,16px) 0 clamp(16px,2vw,28px)}
+.meta{display:flex;flex-wrap:wrap;gap:clamp(18px,3vw,48px);padding-top:clamp(18px,2vw,28px);border-top:1px solid var(--border);width:100%}
+.meta .m{display:flex;flex-direction:column;gap:3px}
+.meta .k{font-family:var(--font-mono);font-size:clamp(11px,.85vw,13px);letter-spacing:0;color:var(--text-subtle)}
+.meta .v{font-size:clamp(15px,1.35vw,21px);font-weight:600}
+
+.pulse{position:absolute;right:-6vw;top:50%;transform:translateY(-50%);width:50vw;height:auto;z-index:-1;opacity:.09;pointer-events:none}
+html[data-theme="light"] .pulse{filter:invert(1);opacity:.06}
+.pulse path{fill:none;stroke:url(#pg);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.close .pulse path{stroke:url(#pg2)}
+@media screen and (max-width:760px){.pulse{width:110vw;right:-30vw;top:auto;bottom:10%;transform:none;opacity:.12}}
+
+/* ════════ QUIÉN ════════ */
+.who{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:clamp(28px,4.5vw,80px);align-items:center}
+.who .photo{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;border:1px solid var(--border-strong);max-height:72vh}
+.who .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.who .photo .tag{position:absolute;left:14px;right:14px;bottom:14px;background:color-mix(in oklch,var(--bg) 78%,transparent);
+  backdrop-filter:blur(10px);border-radius:14px;padding:12px 16px}
+.who .photo .tag b{display:block;font-size:clamp(16px,1.4vw,22px)}
+.who .photo .tag span{font-size:clamp(12px,1vw,15px);color:var(--text-muted)}
+.cv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.2vw,18px);margin-top:clamp(18px,2.4vw,36px)}
+.cv-col{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:clamp(14px,1.5vw,24px)}
+.cv-col .ci{font-size:clamp(24px,2.2vw,34px)}
+.cv-col h3{font-size:clamp(16px,1.45vw,23px);font-weight:700;margin:8px 0 10px;letter-spacing:-0.015em}
+.cv-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.cv-col li{font-size:clamp(13px,1.12vw,17px);color:var(--text-muted);line-height:1.35;padding-left:14px;position:relative}
+.cv-col li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:var(--primary)}
+.cv-col li b{color:var(--text);font-weight:600}
+
+/* ════════ TARJETAS (servicios / sectores) ════════ */
+.cards{display:grid;gap:clamp(10px,1.2vw,18px);margin-top:clamp(20px,2.6vw,40px)}
+.cards.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(16px,1.7vw,28px);display:flex;flex-direction:column;gap:10px}
+.card .ico{font-size:clamp(28px,2.6vw,42px);line-height:1}
+.card h3{font-size:clamp(17px,1.6vw,25px);font-weight:700;letter-spacing:-0.02em;line-height:1.15}
+.card p{font-size:clamp(13px,1.15vw,18px);color:var(--text-muted);line-height:1.4}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.card .tags span{font-family:var(--font-mono);font-size:clamp(10px,.8vw,12px);padding:4px 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-muted)}
+.card.sm{padding:clamp(14px,1.4vw,22px);gap:8px}
+.card.sm h3{font-size:clamp(16px,1.4vw,22px)}
+.card.sm p{font-size:clamp(12px,1.02vw,16px)}
+
+/* ════════ LOGOS ════════ */
+.logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);margin-top:clamp(20px,2.6vw,40px)}
+.logo{background:var(--logo-card);border-radius:18px;height:clamp(90px,11vw,170px);display:flex;align-items:center;justify-content:center;padding:clamp(14px,1.6vw,24px);border:1px solid var(--border);overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:contain;display:block}
+.also{margin-top:clamp(16px,2vw,28px);display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.also .k{font-family:var(--font-mono);font-size:clamp(11px,.9vw,14px);letter-spacing:0;color:var(--text-subtle);margin-right:6px}
+.chip{font-size:clamp(13px,1.1vw,17px);font-weight:600;padding:7px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--border)}
+.chip.star{border-color:color-mix(in oklch,var(--accent) 55%,transparent);color:var(--accent)}
+
+/* ════════ CASOS (antes → ahora) ════════ */
+.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.3vw,20px);margin-top:clamp(18px,2.2vw,34px)}
+.case{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(16px,1.6vw,26px);display:flex;flex-direction:column;gap:clamp(8px,.9vw,14px)}
+.case .ch{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.case .ch h3{font-size:clamp(17px,1.55vw,25px);font-weight:700;letter-spacing:-0.02em}
+.case .ch .sec{font-family:var(--font-mono);font-size:clamp(10px,.82vw,13px);color:var(--text-subtle);letter-spacing:0;white-space:nowrap}
+.ba{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(8px,1vw,14px);align-items:stretch}
+.ba .b,.ba .a{border-radius:12px;padding:clamp(10px,1vw,14px);font-size:clamp(13px,1.12vw,17px);line-height:1.35}
+.ba .b{background:color-mix(in oklch,var(--bad) 12%,transparent);color:var(--text-muted)}
+.ba .a{background:color-mix(in oklch,var(--good) 14%,transparent)}
+.ba .lb{display:block;font-family:var(--font-mono);font-size:clamp(10px,.75vw,12px);letter-spacing:0;margin-bottom:4px}
+.ba .b .lb{color:var(--bad)} .ba .a .lb{color:var(--good)}
+.ba .ar{align-self:center;color:var(--accent);font-weight:800;font-size:clamp(18px,1.6vw,24px)}
+
+/* ════════ PROCESO ════════ */
+.flow{display:flex;align-items:stretch;gap:clamp(8px,1vw,14px);margin-top:clamp(22px,2.8vw,44px)}
+.flow .node{flex:1;min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(16px,1.6vw,26px);display:flex;flex-direction:column;gap:10px}
+.flow .node .n{font-family:var(--font-mono);font-weight:600;font-size:clamp(28px,3vw,48px);color:transparent;-webkit-text-stroke:1.5px var(--primary);line-height:1}
+.flow .node h3{font-size:clamp(17px,1.55vw,24px);font-weight:700;letter-spacing:-0.02em}
+.flow .node p{font-size:clamp(13px,1.12vw,17px);color:var(--text-muted);line-height:1.4}
+.flow .arrow{align-self:center;color:var(--accent);font-size:clamp(20px,1.8vw,28px);font-weight:800}
+.pills{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:clamp(18px,2.4vw,36px)}
+.pill{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:clamp(9px,.9vw,13px) clamp(14px,1.4vw,22px);font-size:clamp(14px,1.2vw,19px);display:flex;gap:8px;align-items:center}
+.pill b{font-weight:700}
+
+/* ════════ CIERRE ════════ */
+.close h1{max-width:16ch;margin-bottom:clamp(14px,1.6vw,24px)}
+.contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.2vw,18px);margin-top:clamp(24px,3vw,48px);max-width:1200px}
+.contact a,.contact div{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(16px,1.6vw,26px);text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:6px}
+.contact a:hover{border-color:var(--primary)}
+.contact .k{font-family:var(--font-mono);font-size:clamp(11px,.85vw,13px);letter-spacing:0;color:var(--text-subtle)}
+.contact .v{font-size:clamp(17px,1.6vw,25px);font-weight:700;letter-spacing:-0.015em}
+
+/* ════════ ARQUETIPOS DE PROSPECTO (dolor · fases · videos · inversión) ════════ */
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.3vw,20px);margin-top:clamp(20px,2.6vw,40px)}
+.quote{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:14px;padding:clamp(16px,1.6vw,26px)}
+.quote p{font-size:clamp(16px,1.5vw,24px);line-height:1.35;font-weight:500}
+.quote p::before{content:"“";color:var(--accent);font-weight:800;margin-right:2px}
+.quote p::after{content:"”";color:var(--accent);font-weight:800}
+.quote span{display:block;margin-top:8px;font-family:var(--font-mono);font-size:clamp(10px,.82vw,13px);letter-spacing:0;color:var(--text-subtle)}
+.road{display:flex;flex-direction:column;gap:clamp(7px,.8vw,12px);margin-top:clamp(18px,2.4vw,36px)}
+.road-row{display:grid;grid-template-columns:clamp(34px,3vw,48px) minmax(0,1.5fr) minmax(0,2fr) auto;gap:clamp(10px,1.4vw,22px);align-items:center;
+  padding:clamp(11px,1.1vw,16px) clamp(14px,1.4vw,22px);background:var(--surface);border:1px solid var(--border);border-radius:14px}
+.road-row .rn{font-family:var(--font-mono);font-weight:600;color:var(--primary);font-size:clamp(14px,1.2vw,19px)}
+.road-row .rt{font-weight:700;font-size:clamp(15px,1.35vw,21px);letter-spacing:-0.015em}
+.road-row .rt small{display:block;font-weight:400;color:var(--text-muted);font-size:clamp(12px,1.02vw,16px);margin-top:3px;letter-spacing:0}
+.road-row .rbar{height:10px;border-radius:999px;background:var(--surface-2);position:relative}
+.road-row .rbar i{position:absolute;top:0;bottom:0;border-radius:999px;background:linear-gradient(90deg,var(--primary),var(--primary-2))}
+.road-row .rmo{font-family:var(--font-mono);font-size:clamp(12px,1vw,15px);color:var(--text-muted);text-align:right;white-space:nowrap;min-width:8.5em}
+.videos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.3vw,20px);margin-top:clamp(20px,2.6vw,40px)}
+.vid{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.vid video{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000;display:block}
+.vid .vt{padding:clamp(12px,1.2vw,18px)}
+.vid .vt b{display:block;font-size:clamp(15px,1.3vw,20px)}
+.vid .vt span{font-size:clamp(12px,1vw,15px);color:var(--text-muted)}
+.invest{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(16px,2vw,32px);margin-top:clamp(20px,2.6vw,40px);align-items:start}
+.itable{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.itable .ir{display:flex;justify-content:space-between;gap:16px;padding:clamp(10px,1vw,15px) clamp(14px,1.4vw,22px);border-bottom:1px solid var(--border);font-size:clamp(14px,1.2vw,19px)}
+.itable .ir:last-child{border-bottom:0;background:var(--primary-subtle);font-weight:800;font-size:clamp(16px,1.45vw,23px)}
+.itable .ir b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.side{display:flex;flex-direction:column;gap:clamp(10px,1.2vw,16px)}
+.big{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:clamp(14px,1.5vw,24px)}
+.big .k{font-family:var(--font-mono);font-size:clamp(11px,.85vw,13px);letter-spacing:0;color:var(--text-subtle)}
+.big .v{font-size:clamp(24px,2.6vw,42px);font-weight:800;letter-spacing:-0.02em;margin:4px 0}
+.big p{font-size:clamp(12px,1.02vw,16px);color:var(--text-muted);line-height:1.4}
+
+/* ════════ DATOS DEL CLIENTE (lo que investigamos) ════════ */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.3vw,20px);margin-top:clamp(22px,2.8vw,44px)}
+.fact{border-top:3px solid var(--primary);padding-top:clamp(12px,1.2vw,18px)}
+.fact .n{font-size:clamp(34px,4.2vw,68px);font-weight:800;letter-spacing:-0.035em;line-height:1;font-stretch:125%;font-variation-settings:"wdth" 125}
+.fact p{font-size:clamp(14px,1.25vw,19px);color:var(--text-muted);line-height:1.35;margin-top:10px}
+.source{margin-top:clamp(20px,2.4vw,36px);font-size:clamp(12px,1vw,15px);color:var(--text-subtle)}
+.fit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.3vw,20px);margin-top:clamp(20px,2.6vw,40px)}
+.fit .card .proof{margin-top:auto;padding-top:10px;border-top:1px solid var(--border);font-size:clamp(12px,1.02vw,16px);color:var(--good)}
+
+/* ════════ SEPARADOR DEL ANEXO ════════ */
+.divider{justify-content:center}
+.divider .for{font-size:clamp(18px,1.7vw,26px);color:var(--text-muted)}
+.divider .client{font-size:clamp(56px,9vw,150px);font-weight:800;letter-spacing:-0.04em;line-height:.95;font-stretch:125%;font-variation-settings:"wdth" 125;margin:10px 0 26px}
+.divider .lead{max-width:40ch}
+
+/* ════════ NAVEGACIÓN ════════ */
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));z-index:50;transition:width .4s ease}
+.chrome{position:fixed;bottom:22px;right:30px;display:flex;align-items:center;gap:14px;z-index:50}
+.dots{display:flex;gap:7px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border-strong);border:none;cursor:pointer;padding:0;transition:all .25s}
+.dot.active{background:var(--accent);width:22px;border-radius:999px}
+.nav-btns{display:flex;gap:6px}
+.nav-btns button,.theme-tg{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;font-size:16px;display:grid;place-items:center;transition:all .2s}
+.nav-btns button:hover,.theme-tg:hover{border-color:var(--accent);color:var(--accent)}
+.nav-btns button:disabled{opacity:.35;cursor:default}
+.counter{font-family:var(--font-mono);font-size:13px;color:var(--text-subtle);min-width:48px;text-align:center}
+.theme-tg{position:fixed;top:22px;right:30px;z-index:50}
+.hint{position:fixed;bottom:26px;left:30px;z-index:50;font-family:var(--font-mono);font-size:12px;color:var(--text-subtle);opacity:.7}
+
+/* ════════ PANTALLAS MEDIANAS ════════ */
+@media (max-width:1100px) and (min-width:761px){
+  .cards.c4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* ════════ CELULAR: se apila y se lee con scroll ════════ */
+@media screen and (max-width:760px){
+  body{overflow:auto;height:auto}
+  .deck{height:auto;width:100%}
+  .slide{position:relative;inset:auto;opacity:1;visibility:visible;transform:none;overflow:visible;
+    min-height:auto;padding:56px 20px;border-bottom:1px solid var(--border);justify-content:flex-start}
+  .slide.cover{min-height:min(100svh,760px);justify-content:space-between;gap:36px}
+  .chrome,.hint,.progress{display:none}
+  .theme-tg{top:12px;right:12px}
+  h1.title{font-size:42px}
+  h2.st{font-size:32px}
+  .lead{font-size:18px}
+  .who{grid-template-columns:1fr;gap:24px}
+  .who .photo{max-width:320px;max-height:none}
+  .cv,.cards.c4,.cases,.contact,.quotes,.videos,.invest,.fit{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr}
+  .road-row{grid-template-columns:34px minmax(0,1fr) auto}
+  .road-row .rbar{display:none}
+  .logos,.cards.sectors{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .logo{height:96px}
+  .flow{flex-direction:column}
+  .flow .arrow{transform:rotate(90deg)}
+  .ba{grid-template-columns:1fr}
+  .ba .ar{transform:rotate(90deg);justify-self:center}
+}
+
+body.pdf .chrome,body.pdf .hint,body.pdf .progress,body.pdf .theme-tg{display:none}
+body.pdf .slide{transition:none}
+
+/* ════════ IMPRIMIR / PDF: una slide por página ════════ */
+@page{size:1600px 900px;margin:0}
+@media print{
+  body{overflow:visible;height:auto;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .deck{height:auto}
+  .slide{position:relative;inset:auto;width:1600px;height:900px;opacity:1;visibility:visible;transform:none;
+    break-after:page;page-break-after:always;transition:none}
+  .chrome,.hint,.progress,.theme-tg{display:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<button class="theme-tg" id="themeTg" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     PRESENTACIÓN BASE · GC Automation · skill presentacion-gc
+     · Las slides marcadas BASE no se tocan por prospecto.
+     · Las slides de cada prospecto van entre "Cómo trabajamos" y "Cierre".
+     · El anexo del cliente va después de "Cómo trabajamos" y antes del cierre.
+     · REGLAS: sin rayas largas · "ustedes/su empresa" · sin precios en la base.
+     ════════════════════════════════════════════════════════════════════ -->
+<div class="deck" id="deck">
+
+  <!-- 1 · PORTADA (BASE) -->
+  <section class="slide cover active">
+    <img class="pulse" src="assets/gc-simbolo-blanco.svg" alt="">
+    <div class="brandmark">
+      <img src="assets/gc-simbolo.svg" alt="">
+      <span class="bn"><b>GC</b> Automation<small>Software a la medida</small></span>
+    </div>
+    <div>
+      <div class="kicker">Presentación de la empresa</div>
+      <h1 class="title">Su operación, <span class="hl">en piloto automático.</span></h1>
+      <p class="lead">Sistemas a la medida, integraciones contables y asistentes con IA para empresas que <b>ya crecieron más que su Excel</b>.</p>
+    </div>
+    <div class="meta">
+      <div class="m"><span class="k">Presenta</span><span class="v">Gonzalo Correa · Fundador</span></div>
+      <div class="m"><span class="k">Web</span><span class="v">gc-automation.com</span></div>
+      <div class="m"><span class="k">WhatsApp</span><span class="v">317 637 9339</span></div>
+    </div>
+  </section>
+
+  <!-- 2 · QUIÉN ESTÁ DETRÁS (BASE) -->
+  <section class="slide">
+    <div class="who">
+      <div class="photo">
+        <img src="assets/gonzalo.jpg" alt="Gonzalo Correa">
+        <div class="tag"><b>Gonzalo Correa</b><span>Fundador de GC Automation</span></div>
+      </div>
+      <div>
+        <div class="kicker">Quién está detrás</div>
+        <h2 class="st">Un financiero que <span class="hl">construye software.</span></h2>
+        <p class="lead">Entiendo los números de su empresa <b>antes de escribir la primera línea de código</b>.</p>
+        <div class="cv">
+          <div class="cv-col"><div class="ci">🎓</div><h3>Formación</h3><ul>
+            <li><b>Ingeniero Civil</b>, Universidad Nacional de Colombia</li>
+            <li><b>MBA en Finanzas</b>, Universidad de los Andes</li>
+            <li><b>Desarrollador Full Stack</b>, soyHenry</li></ul></div>
+          <div class="cv-col"><div class="ci">🏦</div><h3>18 años en finanzas</h3><ul>
+            <li><b>Head Trader</b> de la mesa de divisas, Banco Itaú</li>
+            <li><b>Gerente de Trading</b>, Bancóldex</li>
+            <li><b>Portafolio de inversión</b>, Colfondos</li></ul></div>
+          <div class="cv-col"><div class="ci">💻</div><h3>6 años en software</h3><ul>
+            <li><b>Fundador</b>, GC Automation</li>
+            <li><b>Desarrollador</b> en Bamboo, fintech de pagos</li>
+            <li><b>Automatización</b> para DebtorCC (EE. UU.)</li>
+            <li><b>Fábricas de Productividad</b>, Colombia Productiva</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · QUÉ HACEMOS (BASE) -->
+  <section class="slide">
+    <div class="kicker">Qué hacemos</div>
+    <h2 class="st">Cuatro formas de <span class="hl">quitarle trabajo manual</span> a su empresa.</h2>
+    <div class="cards c4">
+      <div class="card"><div class="ico">🏭</div><h3>Sistemas a la medida</h3><p>Producción, inventarios, pedidos y cotizaciones en una sola herramienta, hecha para su proceso.</p><div class="tags"><span>ERP</span><span>MES</span><span>Cotizadores</span></div></div>
+      <div class="card"><div class="ico">🔗</div><h3>Integraciones contables</h3><p>Las facturas llegan al correo y quedan causadas solas en su software contable.</p><div class="tags"><span>Siigo</span><span>Alegra</span><span>World Office</span><span>Odoo</span></div></div>
+      <div class="card"><div class="ico">💬</div><h3>Asistentes de WhatsApp con IA</h3><p>Atienden, venden y cobran a cualquier hora, conectados a su inventario y su CRM.</p><div class="tags"><span>Ventas</span><span>Cobranza</span><span>CRM</span></div></div>
+      <div class="card"><div class="ico">📊</div><h3>Tableros gerenciales</h3><p>Rentabilidad, cartera y ventas al día, sin que nadie arme informes a mano.</p><div class="tags"><span>Rentabilidad</span><span>Cartera</span><span>KPIs</span></div></div>
+    </div>
+  </section>
+
+  <!-- 4 · SECTORES (BASE) -->
+  <section class="slide">
+    <div class="kicker">Sectores</div>
+    <h2 class="st">Ya trabajamos con <span class="hl">ocho sectores</span>.</h2>
+    <div class="cards c4 sectors">
+      <div class="card sm"><div class="ico">👢</div><h3>Manufactura</h3><p>Fábrica de calzado: de la orden al despacho</p></div>
+      <div class="card sm"><div class="ico">🌾</div><h3>Alimentos y agroindustria</h3><p>Molinos, grasas y consumo masivo</p></div>
+      <div class="card sm"><div class="ico">🚚</div><h3>Distribución y comercio</h3><p>Rentabilidad, fletes y presupuesto</p></div>
+      <div class="card sm"><div class="ico">🍽️</div><h3>Restaurantes</h3><p>Costos, inventario y auditorías de calidad</p></div>
+      <div class="card sm"><div class="ico">⚡</div><h3>Ingeniería e industria</h3><p>Cotizadores de obra e informes técnicos</p></div>
+      <div class="card sm"><div class="ico">🏥</div><h3>Salud</h3><p>Atención por WhatsApp conectada al CRM</p></div>
+      <div class="card sm"><div class="ico">💳</div><h3>Finanzas y cobranza</h3><p>Cobro con IA y conciliación bancaria</p></div>
+      <div class="card sm"><div class="ico">🏛️</div><h3>Gremios e instituciones</h3><p>Plataformas para programas y campañas</p></div>
+    </div>
+  </section>
+
+  <!-- 5 · CONFÍAN EN NOSOTROS (BASE) -->
+  <section class="slide">
+    <div class="kicker">Confían en nosotros</div>
+    <h2 class="st">Empresas que ya <span class="hl">trabajan distinto</span>.</h2>
+    <div class="logos">
+      <div class="logo"><img src="assets/botas.png" alt="Botas Agroindustrial"></div>
+      <div class="logo"><img src="assets/olpar.jpg" alt="OlPar Distribuciones"></div>
+      <div class="logo"><img src="assets/gummybox.png" alt="The Gummy Box"></div>
+      <div class="logo"><img src="assets/arroz-aragon.png" alt="Molino Aragón"></div>
+      <div class="logo"><img src="assets/arroz-paisa.jpg" alt="Arroz Paisa"></div>
+      <div class="logo"><img src="assets/veraz.jpg" alt="Veraz"></div>
+    </div>
+    <div class="also">
+      <span class="k">Y también</span>
+      <span class="chip star">Fábricas de Productividad</span>
+      <span class="chip">Grasas y Derivados</span>
+      <span class="chip">TEIICO</span>
+      <span class="chip">NorPass</span>
+      <span class="chip">Gestivalor</span>
+      <span class="chip">La Comarca</span>
+    </div>
+  </section>
+
+  <!-- 6 · CASOS (BASE) -->
+  <section class="slide">
+    <div class="kicker">Resultados</div>
+    <h2 class="st">Lo que <span class="hl">ya está funcionando</span>.</h2>
+    <div class="cases">
+      <div class="case">
+        <div class="ch"><h3>Fábrica de calzado</h3><span class="sec">Manufactura</span></div>
+        <div class="ba"><div class="b"><span class="lb">Antes</span>Una planilla de Excel por cada área de la planta</div><span class="ar">→</span><div class="a"><span class="lb">Ahora</span><b>30.000 pares al mes</b> trazados del corte al despacho</div></div>
+      </div>
+      <div class="case">
+        <div class="ch"><h3>Distribuidora</h3><span class="sec">Comercio</span></div>
+        <div class="ba"><div class="b"><span class="lb">Antes</span>Un Excel de 192 MB que nadie se atrevía a tocar</div><span class="ar">→</span><div class="a"><span class="lb">Ahora</span><b>Rentabilidad diaria</b> que destapó pérdidas ocultas</div></div>
+      </div>
+      <div class="case">
+        <div class="ch"><h3>Productora de alimentos</h3><span class="sec">Agroindustria</span></div>
+        <div class="ba"><div class="b"><span class="lb">Antes</span>Facturas de proveedores digitadas una por una</div><span class="ar">→</span><div class="a"><span class="lb">Ahora</span><b>Se causan solas</b> en el contable al llegar al correo</div></div>
+      </div>
+      <div class="case">
+        <div class="ch"><h3>Grupo empresarial</h3><span class="sec">Cobranza</span></div>
+        <div class="ba"><div class="b"><span class="lb">Antes</span>Cobro por llamadas y conciliación manual</div><span class="ar">→</span><div class="a"><span class="lb">Ahora</span><b>Cobranza con IA por WhatsApp</b> en 7 empresas</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · CÓMO TRABAJAMOS (BASE) -->
+  <section class="slide">
+    <div class="kicker">Cómo trabajamos</div>
+    <h2 class="st">Por fases, con <span class="hl">resultados cada mes</span>.</h2>
+    <div class="flow">
+      <div class="node"><span class="n">01</span><h3>Diagnóstico</h3><p>Escuchamos y levantamos cómo funciona hoy su proceso.</p></div>
+      <div class="arrow">→</div>
+      <div class="node"><span class="n">02</span><h3>Propuesta por fases</h3><p>Alcance, tiempos y valor claros desde el inicio.</p></div>
+      <div class="arrow">→</div>
+      <div class="node"><span class="n">03</span><h3>Entregas cortas</h3><p>Cada fase termina con algo que su equipo ya puede usar.</p></div>
+      <div class="arrow">→</div>
+      <div class="node"><span class="n">04</span><h3>Acompañamiento</h3><p>Soporte, ajustes y mejora continua.</p></div>
+    </div>
+    <div class="pills">
+      <span class="pill">🔐 <b>El sistema y los datos son suyos</b></span>
+      <span class="pill">🧩 <b>Se conecta con lo que ya tienen</b></span>
+      <span class="pill">🤝 <b>Pago por fase, sin sorpresas</b></span>
+    </div>
+  </section>
+
+  <!-- ░░░ ANEXO DEL CLIENTE: separador + sus slides, siempre antes del cierre ░░░ -->
+
+  <!-- 8 · CIERRE (BASE) -->
+  <section class="slide close">
+    <img class="pulse" src="assets/gc-simbolo-blanco.svg" alt="">
+    <div class="brandmark" style="margin-bottom:clamp(20px,3vw,48px)">
+      <img src="assets/gc-simbolo.svg" alt="">
+      <span class="bn"><b>GC</b> Automation<small>Software a la medida</small></span>
+    </div>
+    <h1 class="title">Hablemos de <span class="hl">su operación.</span></h1>
+    <p class="lead">En una conversación de 30 minutos le mostramos <b>qué se puede automatizar</b> y por dónde conviene empezar.</p>
+    <div class="contact">
+      <a href="https://wa.me/573176379339" target="_blank" rel="noopener"><span class="k">WhatsApp</span><span class="v">317 637 9339</span></a>
+      <a href="https://gc-automation.com" target="_blank" rel="noopener"><span class="k">Web</span><span class="v">gc-automation.com</span></a>
+      <div><span class="k">Fundador</span><span class="v">Gonzalo Correa</span></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="chrome">
+  <div class="dots" id="dots"></div>
+  <span class="counter" id="counter">1 / 1</span>
+  <div class="nav-btns">
+    <button id="prev" title="Anterior (←)">‹</button>
+    <button id="next" title="Siguiente (→)">›</button>
+  </div>
+</div>
+<div class="hint">← → para navegar · F pantalla completa</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const dotsWrap=document.getElementById('dots');
+const counter=document.getElementById('counter');
+const progress=document.getElementById('progress');
+const prevBtn=document.getElementById('prev'), nextBtn=document.getElementById('next');
+let i=0;
+slides.forEach((_,idx)=>{const d=document.createElement('button');d.className='dot';d.setAttribute('aria-label','Slide '+(idx+1));d.onclick=()=>go(idx);dotsWrap.appendChild(d)});
+const dots=[...dotsWrap.children];
+function go(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  dots.forEach((d,idx)=>d.classList.toggle('active',idx===i));
+  counter.textContent=`${i+1} / ${slides.length}`;
+  progress.style.width=`${(i+1)/slides.length*100}%`;
+  prevBtn.disabled=i===0; nextBtn.disabled=i===slides.length-1;
+}
+prevBtn.onclick=()=>go(i-1);
+nextBtn.onclick=()=>go(i+1);
+const narrow=()=>matchMedia('(max-width:760px)').matches;
+document.addEventListener('keydown',e=>{
+  if(narrow())return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(i+1)}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(i-1)}
+  else if(e.key==='Home')go(0);
+  else if(e.key==='End')go(slides.length-1);
+  else if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+});
+// toque: deslizar a los lados en tablet horizontal
+let tx=null;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{if(tx===null||narrow())return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)go(i+(dx<0?1:-1));tx=null});
+document.getElementById('themeTg').onclick=()=>{const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark'};
+if(location.search.includes('pdf'))document.body.classList.add('pdf');
+go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
