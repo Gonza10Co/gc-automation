@@ -1,0 +1,53 @@
+{
+  "titulo": "GC Automation · video de apertura",
+  "voz": "alejandro (narrador) + jhenny (voz del asistente en la escena 1)",
+  "escenas": [
+    {
+      "id": 0,
+      "texto": "Somos GC Automation. Le quitamos trabajo manual a las empresas de cuatro formas: sistemas a la medida, integraciones contables, asistentes de WhatsApp con inteligencia artificial y tableros gerenciales.",
+      "accion": "card de apertura: logo GC Automation + las 4 formas (slide Qué hacemos)."
+    },
+    {
+      "id": 1,
+      "texto": "Detrás está Gonzalo Correa. Ingeniero de la Nacional, MBA de los Andes y dieciocho años en finanzas, en las mesas de dinero de las tesorerías de Colfondos, Itaú y Bancóldex. Un financiero que construye software: entiende los números de su empresa antes de escribir la primera línea de código.",
+      "accion": "card: foto de Gonza + formación y trayectoria."
+    },
+    {
+      "id": 2,
+      "texto": "Hoy ya trabajan distinto una fábrica de calzado que traza treinta mil pares al mes, distribuidoras, molinos, restaurantes, firmas de ingeniería y de salud. Y desarrollamos software para Fábricas de Productividad, el programa de Colombia Productiva.",
+      "accion": "card: grilla de empresas (slide Confían en nosotros)."
+    },
+    {
+      "id": 3,
+      "texto": "La forma de trabajar es simple. Primero escuchamos cómo funciona hoy su proceso. Después, una propuesta por fases, con alcance y valor claros. Cada fase termina con algo que su equipo ya puede usar. Y el sistema y los datos son suyos.",
+      "accion": "card: 4 pasos (slide Cómo trabajamos)."
+    },
+    {
+      "id": 4,
+      "texto": "Pero esto se entiende mejor con una historia. Martes, nueve y cuarenta de la noche, Ibagué. Claudia es la gerente de una distribuidora que vende en todo el Tolima. Todos se fueron a casa hace rato. Ella sigue ahí, cuadrando un Excel que ya pesa más que su paciencia. Mientras tanto, en su WhatsApp, tres clientes preguntan precios. Nadie les contesta. Mañana, alguno ya habrá comprado en otro lado.",
+      "accion": "card: Martes · 9:40 p. m. · Ibagué / Claudia y su Excel. Lluvia."
+    },
+    {
+      "id": 5,
+      "texto": "Ahora, imaginemos la misma noche con un asistente de inteligencia artificial. Ricardo, un cliente de Chaparral, manda una nota de voz: necesita veinte cajas de aceite para mañana. El asistente revisa el inventario, calcula el precio... y le responde con su propia voz.",
+      "voz2": "Hola, Ricardo. Sí tenemos las veinte cajas de aceite. Le quedan en un millón ochocientos cuarenta mil pesos, con entrega mañana antes de las diez. ¿Se las separo?",
+      "cola": "Ricardo dice que sí. Y el pedido queda listo antes de que Claudia apague el computador.",
+      "accion": "chat WhatsApp: voice in (Ricardo) → think inventario/precio → voice out que SUENA (Jhenny) → in 'Sí, sepárelas' → think pedido creado (hero)."
+    },
+    {
+      "id": 6,
+      "texto": "A la mañana siguiente, las facturas de los proveedores llegan al correo. Antes, alguien las digitaba una por una. Ahora se causan solas en el software contable. Siigo, Alegra, World Office. Sin errores y sin trasnochos.",
+      "accion": "desk: bandeja de facturas que pasan a CAUSADA una por una."
+    },
+    {
+      "id": 7,
+      "texto": "Y Claudia, con el primer café, abre su tablero. Así se vería su semana: ventas, cartera y rentabilidad por cliente, al día, sin que nadie arme un informe a mano. Por primera vez sabe qué clientes le dejan plata... y cuáles se la quitan.",
+      "accion": "dash: KPIs + barras de rentabilidad por cliente, focusAt resalta los que pierden."
+    },
+    {
+      "id": 8,
+      "texto": "Ah, y un detalle. Esta voz que lo acompañó todo el video, y la del asistente que le contestó a Ricardo... también las hizo una inteligencia artificial. Toda empresa tiene su propio Excel de las nueve de la noche. Ahora queremos conocer el de ustedes.",
+      "accion": "card de cierre: logo GC Automation · 'Hablemos de su operación'. Gonza toma la palabra y pregunta por sus dolores."
+    }
+  ]
+}
