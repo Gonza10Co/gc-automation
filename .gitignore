@@ -8,3 +8,10 @@
 
 # Versión anterior de la página
 GC Automatización.html
+
+# Presentación y marca: sus PNG sí van
+!presentacion/assets/*.png
+!marca/archivos/*.png
+
+# Posta local de Claude
+.claude/hilo.md
