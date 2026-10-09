@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conecta tu WhatsApp · GC Automation</title>
+<meta name="description" content="Conecta el WhatsApp Business de tu empresa a las soluciones de GC Automation con el registro oficial de Meta.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://gc-automation.com/conectar.html">
+<style>
+  :root {
+    --ink: #1d1d1f; --ink-2: #6e6e73; --line: #d2d2d7; --bg: #ffffff; --bg-2: #f5f5f7;
+    --blue-ink: #0066cc; --green: #1f8f4e; --red: #c4302b; --maxw: 640px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #f5f5f7; --ink-2: #a1a1a6; --line: #38383d; --bg: #000000; --bg-2: #1c1c1e; --blue-ink: #2997ff; --green: #34c759; --red: #ff453a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6; font-size: 17px; }
+  main { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 80px; }
+  a { color: var(--blue-ink); }
+  .volver { font-size: 15px; text-decoration: none; }
+  h1 { font-size: 34px; line-height: 1.15; margin: 20px 0 10px; letter-spacing: -0.02em; }
+  .lead { color: var(--ink-2); margin: 0 0 28px; }
+  ol { padding-left: 22px; margin: 0 0 28px; }
+  li { margin: 6px 0; }
+  .caja { background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  label { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--ink-2); margin: 0 0 18px; cursor: pointer; }
+  label input { margin-top: 5px; }
+  button { width: 100%; border: 0; border-radius: 12px; padding: 15px 18px; font: inherit; font-weight: 600; color: #fff; background: #1877f2; cursor: pointer; }
+  button:disabled { opacity: .55; cursor: default; }
+  #estado { margin: 16px 0 0; font-size: 15px; min-height: 1.6em; }
+  #estado.ok { color: var(--green); }
+  #estado.error { color: var(--red); }
+  footer { border-top: 1px solid var(--line); margin-top: 48px; padding-top: 20px; color: var(--ink-2); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="volver" href="/">← GC Automation</a>
+  <h1>Conecta tu WhatsApp Business</h1>
+  <p class="lead">Con este registro oficial de Meta tu empresa autoriza a GC Automation a operar el asistente de WhatsApp que contrataste. Toma unos 5 minutos.</p>
+
+  <ol>
+    <li>Inicia sesión con la cuenta de Facebook que administra tu empresa.</li>
+    <li>Elige o crea el portafolio comercial de tu empresa.</li>
+    <li>Elige el número de WhatsApp y confírmalo con el código que te llega.</li>
+  </ol>
+
+  <div class="caja">
+    <label>
+      <input type="checkbox" id="coexistencia">
+      <span>Este número ya lo uso en la app <strong>WhatsApp Business</strong> del celular y quiero seguir usándolo ahí.</span>
+    </label>
+    <button id="conectar" disabled>Cargando…</button>
+    <p id="estado" role="status"></p>
+  </div>
+
+  <footer>
+    Al conectar tu cuenta aceptas los <a href="terminos.html">Términos del servicio</a> y la <a href="privacidad.html">Política de datos</a>.
+    Puedes desconectarla cuando quieras desde la configuración de tu portafolio en Meta.
+  </footer>
+</main>
+
+<script>
+  const APP_ID = '1087849070514131';
+  const CONFIG_ID = '1091867417151620';
+  const BACKEND = 'https://gc-connect-eta.vercel.app/api/onboard';
+
+  const boton = document.getElementById('conectar');
+  const estado = document.getElementById('estado');
+  const coex = document.getElementById('coexistencia');
+
+  // El registro devuelve dos cosas por caminos distintos: el code (callback de FB.login)
+  // y los ids de la cuenta (postMessage). Se envían al backend cuando llegan las dos.
+  let registro = {};
+
+  function mostrar(texto, clase = '') {
+    estado.textContent = texto;
+    estado.className = clase;
+  }
+
+  async function enviarSiCompleto() {
+    if (!registro.code || !registro.waba_id) return;
+    const datos = registro;
+    registro = {};
+    mostrar('Dejando tu número listo…');
+    try {
+      const res = await fetch(BACKEND, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos),
+      });
+      const r = await res.json();
+      if (!r.ok) throw new Error(r.error);
+      mostrar(`¡Listo! ${r.nombre} (${r.numero}) quedó conectado. Ya te escribimos para seguir.`, 'ok');
+      boton.textContent = 'Conectado';
+    } catch (e) {
+      mostrar(e.message || 'Algo falló. Escríbenos al +57 317 637 9339.', 'error');
+      boton.disabled = false;
+    }
+  }
+
+  window.addEventListener('message', (e) => {
+    if (!/^https:\/\/([a-z]+\.)?facebook\.com$/.test(e.origin)) return;
+    let d;
+    try { d = JSON.parse(e.data); } catch { return; }
+    if (d.type !== 'WA_EMBEDDED_SIGNUP') return;
+    if (d.event === 'FINISH' || d.event === 'FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING') {
+      Object.assign(registro, {
+        waba_id: d.data.waba_id,
+        phone_number_id: d.data.phone_number_id,
+        business_id: d.data.business_id,
+        coexistencia: d.event === 'FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING',
+      });
+      enviarSiCompleto();
+    } else if (d.event === 'CANCEL') {
+      mostrar('Cancelaste el registro. Puedes intentarlo de nuevo cuando quieras.');
+      boton.disabled = false;
+    } else if (d.event === 'ERROR') {
+      mostrar(`Meta reportó un error: ${d.data?.error_message || 'sin detalle'}`, 'error');
+      boton.disabled = false;
+    }
+  });
+
+  boton.addEventListener('click', () => {
+    boton.disabled = true;
+    registro = {};
+    mostrar('Abriendo el registro de Meta…');
+    FB.login((response) => {
+      if (response.authResponse?.code) {
+        registro.code = response.authResponse.code;
+        enviarSiCompleto();
+      } else if (!estado.textContent.startsWith('Cancelaste')) {
+        mostrar('No se completó el inicio de sesión.');
+        boton.disabled = false;
+      }
+    }, {
+      config_id: CONFIG_ID,
+      response_type: 'code',
+      override_default_response_type: true,
+      extras: {
+        setup: {},
+        featureType: coex.checked ? 'whatsapp_business_app_onboarding' : '',
+        sessionInfoVersion: '3',
+      },
+    });
+  });
+
+  window.fbAsyncInit = () => {
+    FB.init({ appId: APP_ID, autoLogAppEvents: true, xfbml: false, version: 'v25.0' });
+    boton.disabled = false;
+    boton.textContent = 'Conectar con Facebook';
+  };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js"></script>
+</body>
+</html>
